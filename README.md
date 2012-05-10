@@ -7,12 +7,13 @@
 
 	sudo apt-get install abootimg
 
-###Unpacking kernel.sin files
-#### unpack kernel.sin file (credits DoomLord) 
+###Unpacking kernel contents from ftf
+#### unpack ftf  file to zimage and ramdisk (credits DoomLord) 
 this works on linux natively or on cygwin, not native windows
+update : now you can directly use the ftf file, i have included an easy script for that
 
 	cd unpack-kernel/sin/ 
-	./unpack-kernelsin.pl kernel.sin
+	./unpack-ftf kernel.sin
 
 ###Creating Kernel.sin and flashable ftf files
 #### For linux use this
