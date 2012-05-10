@@ -1,0 +1,35 @@
+#!/bin/bash
+echo -----------------------------------------------------
+echo      DooMLoRD kernel.sin and FTF creator v1.0
+echo      modified by Championswimmer 
+echo      works with Wine and java 1.6 on Ubuntu
+
+echo -----------------------------------------------------
+echo                FOR XPERIA X10 ONLY
+echo -----------------------------------------------------
+echo   Credits: 
+echo      the_laser - sin packer tools
+echo      Androxyde - FTF packer tools
+echo      DooMLoRD  - making this easy for all 
+echo      championswimmer  - bringing it to linux 
+echo -----------------------------------------------------
+echo   before you begin make sure that:
+echo      kernel zImage is called "image"
+echo      ramdisk.cpio.gz is called "ramdisk"
+echo      and you have wine installed on your system
+echo -----------------------------------------------------
+read -p "Press [Enter] key to create ftf..."
+
+wine bin2Elf.exe 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
+wine bin2sin.exe result.elf 03000000220000007502000062000000
+rm result.elf
+mv result.elf.sin kernel.sin
+echo Manifest-Version: 1.0 > manifest.mf
+echo device: X10S >>  manifest.mf
+echo branding: kCernel-SONY-thgokang-v3-998mhz >>  manifest.mf
+echo Created-By: championswimmer >>  manifest.mf
+echo version: 2.3.4 >>  manifest.mf
+jar cvfm0 kernel.jar manifest.mf loader.sin kernel.sin
+mv kernel.jar kCernel-SONY-thgokang-v3-998mhz.ftf
+rm manifest.mf
+rm kernel.sin
