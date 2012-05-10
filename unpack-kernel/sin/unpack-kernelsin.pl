@@ -73,7 +73,7 @@ open (RAMDISKFILE, ">$ARGV[0]-ramdisk.cpio.gz");
 print RAMDISKFILE $ramdisk or die;
 close RAMDISKFILE;
 
-print "\nkernel written to $ARGV[0]-kernel\nramdisk written to $ARGV[0]-ramdisk.cpio.gz\n";
+print "\nsin file has been splitted\n";
 if (-e "$ARGV[0]-ramdisk") { 
 	rmtree "$ARGV[0]-ramdisk";
 	print "\nremoved old directory $ARGV[0]-ramdisk\n";
@@ -83,4 +83,4 @@ mkdir "$ARGV[0]-ramdisk" or die;
 chdir "$ARGV[0]-ramdisk" or die;
 system ("gunzip -c ../$ARGV[0]-ramdisk.cpio.gz | cpio -i");
 
-print "\nextracted ramdisk contents to directory $ARGV[0]-ramdisk/\n";
+
