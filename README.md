@@ -9,7 +9,7 @@
 
 ###Unpacking kernel contents from ftf
 #### unpack ftf  file to zimage and ramdisk (credits DoomLord) 
- this works on linux natively or on cygwin, not native windows
+ this works on linux natively or on cygwin, not native windows  
  update : now you can directly use the ftf file, i have included an easy script for that
 
 	cd unpack-kernel/sin/ 
