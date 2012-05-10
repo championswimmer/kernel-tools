@@ -13,7 +13,7 @@
  update : now you can directly use the ftf file, i have included an easy script for that
 
 	cd unpack-kernel/sin/ 
-	./unpack-ftf kernel.sin
+	./unpack-ftf
 
 ###Creating Kernel.sin and flashable ftf files
 #### For linux use this
