@@ -1,14 +1,14 @@
 #!/bin/bash
 echo "---------------------------------------------------------"
 echo "-----------Extract Ramdisk (Android )-------------------"
-echo "ramdisk should be named 'ramdisk' or 'initrd.img' or 'ramdisk.cpio.gz'"
+echo "ramdisk should be named 'initrd.img' or 'ramdisk.cpio.gz'"
 
 
 
-if [  -e initrd.img  -a  -e ramdisk.cpio.gz -a -e ramdisk  ]
+if [  -e initrd.img  -a  -e ramdisk.cpio.gz   ]
 then
 	
-	echo "Please use either initrd.img or ramdisk.cpio.gz or ramdisk"
+	echo "Please use either initrd.img or ramdisk.cpio.gz "
 	echo "I cannot extract more than one ramdisk together"
 	echo "There should be only one ramdisk"
 	exit
