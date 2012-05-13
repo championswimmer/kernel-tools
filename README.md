@@ -30,7 +30,7 @@ NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 ###Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser)
 (only for Xperia X10i or X10a for now)
 
-######   For linux use this
+#####   For linux use this
 I have ported DoomLord's script onto Linux but it needs wine to work
 
 You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
@@ -43,7 +43,7 @@ Or for more advanced funtionality use this
 	./kernel-tools/pack-kernel/ftf/build-ftf /path/to/zImage /path/to/ramdisk.cpio.gz
 NOTE: The paths must be absolute paths to the files
 
-######  For windows use BUILD-IT.bat file instead
+#####  For windows use BUILD-IT.bat file instead
 this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha ha
 
 	cd kernel-tools
