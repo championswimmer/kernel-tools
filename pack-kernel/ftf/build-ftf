@@ -1,4 +1,6 @@
 #!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
 echo -----------------------------------------------------
 echo      DooMLoRD kernel.sin and FTF creator v1.0
 echo      modified by Championswimmer 
@@ -19,7 +21,8 @@ echo      ramdisk.cpio.gz is called "ramdisk"
 echo      and you have wine installed on your system
 echo -----------------------------------------------------
 read -p "Press [Enter] key to create ftf..."
-
+cp $1 ./image
+cp $2 ./ramdisk
 wine bin2Elf.exe 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
 wine bin2sin.exe result.elf 03000000220000007502000062000000
 rm result.elf

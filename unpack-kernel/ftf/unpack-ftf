@@ -1,5 +1,6 @@
 #!/bin/bash
-
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
 echo " --------------------------------------------------------"
 echo "   Champ's Script to extract zImage and ramdisk from ftf "
 echo "        using DoomLord's Kernel.sin unpacker perl script "
@@ -9,23 +10,34 @@ echo " PLease note that "
 echo " If there are more than one ftf files, then only first file will be acted upon"
 echo " Other ftf files will be ignored"
 read -p "Press [Enter] to continue"
-
-
-if  [ -e kernel.ftf ]
+if [  $1 ]
 then
-	echo "----ERROR---"
-	echo "please rename your ftf to something other than kernel.ftf"
-	echo "there should be not file called kernel.ftf in this folder"
-	echo "----Thank you---"
-	exit
+	cp $1 kernel.ftf
+else
+	if [ -e ../../input/kernel.ftf ]
+	then
+		cp ../../input/kernel.ftf kernel.ftf
+	else
+		echo "Please place kernel.ftf file in input folder"
+		exit
+	fi
 fi
 
-cp *.ftf kernel.ftf
-jar xvf kernel.ftf kernel.sin
-rm -f kernel.ftf
-./unpack-kernelsin.pl kernel.sin
+
+if [ -e kernel.ftf ]
+then
+	rm -f temp.ftf
+	cp *.ftf temp.ftf
+	jar xvf temp.ftf kernel.sin
+	rm -f temp.ftf
+	./unpack-kernelsin.pl kernel.sin
+else
+	echo "No ftf found"
+	exit
+fi
 rm -r -f kernel-contents
 mkdir -p kernel-contents
+rm -f *.ftf
 mv kernel.sin* kernel-contents/.
 cd kernel-contents
 mv *.cpio.gz ramdisk.cpio.gz
