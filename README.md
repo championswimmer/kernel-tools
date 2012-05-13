@@ -21,20 +21,27 @@
    update2: automatised the process now to accept arguements   
    use this command 
  
-	./unpack-kernel/ftf/unpack-ftf <path/to/kernel.ftf>
+	./unpack-kernel/ftf/unpack-ftf path/to/kernel.ftf
 	
-if no arguement is given it uses the kernel.ftf file in input folder
+NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 
 
 ***********
-###Creating Kernel.sin and flashable ftf files
+###Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser)
 (only for Xperia X10i or X10a for now)
 
 ######   For linux use this
 I have ported DoomLord's script onto Linux but it needs wine to work
 
-	cd kernel-tools/pack-kernel/ftf
-	./build-ftf
+You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
+folder and run this command
+
+	./kernel-tools/pack-kernel/ftf/build-ftf
+	
+Or for more advanced funtionality use this
+
+	./kernel-tools/pack-kernel/ftf/build-ftf /path/to/zImage /path/to/ramdisk.cpio.gz
+NOTE: The paths must be absolute paths to the files
 
 ######  For windows use BUILD-IT.bat file instead
 this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha ha
@@ -43,6 +50,10 @@ this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha 
 	cd pack-kernel
 	cd ftf
 	BUILD-IT.bat
+	
+For Windows,  
+The zImage and ramdisk should be placed inside the same folder as BUILD-IT.bat   
+and they should be named "image" and "ramdisk"
 
 ***************
 
