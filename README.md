@@ -1,8 +1,8 @@
-#Android Kitchen Kernel
+#Android Kernel Kitchen
 
 ##tools to tinker with kernels and ramdisks 
 
-#### Install Pre-requisite Packages
+### Install Pre-requisite Packages
 
 #####Android Boot Image modifier package
 	sudo apt-get install abootimg
@@ -11,7 +11,7 @@
 12May'12 : As of now required only by "ftf creation" area of kitchen
 
 	sudo apt-get install wine
-
+**********
 ###Unpacking kernel contents from ftf 
 (required for Xperia series of smartphones only)
 
@@ -26,7 +26,7 @@
 if no arguement is given it uses the kernel.ftf file in input folder
 
 
-
+***********
 ###Creating Kernel.sin and flashable ftf files
 (only for Xperia X10i or X10a for now)
 
@@ -44,4 +44,5 @@ this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha 
 	cd ftf
 	BUILD-IT.bat
 
+***************
 
