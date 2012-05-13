@@ -9,6 +9,7 @@
 
 #####Install Wine
 12May'12 : As of now required only by "ftf creation" area of kitchen
+
 	sudo apt-get install wine
 
 ###Unpacking kernel contents from ftf 
