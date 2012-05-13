@@ -12,7 +12,7 @@
 
 	sudo apt-get install wine
 **********
-###Unpacking kernel contents from ftf 
+### + Unpacking kernel contents from ftf 
 (required for Xperia series of smartphones only)
 
 ######   Unpack ftf  file to zimage and ramdisk (credits DoomLord) 
@@ -27,7 +27,7 @@ NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 
 
 ***********
-###Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser)
+### + Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser)
 (only for Xperia X10i or X10a for now)
 
 #####   For linux use this
