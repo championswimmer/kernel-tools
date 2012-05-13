@@ -42,7 +42,7 @@ Or for more advanced funtionality use this
 
 	./kernel-tools/pack-kernel/ftf/build-ftf /path/to/zImage /path/to/ramdisk.cpio.gz
 NOTE: The paths must be absolute paths to the files
-
+_ _ _
 #####  For windows use BUILD-IT.bat file instead
 this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha ha
 
