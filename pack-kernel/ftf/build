@@ -45,8 +45,8 @@ else
 	cp $1 ./image
 	cp $2 ./ramdisk
 fi
-wine bin2Elf.exe 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
-wine bin2sin.exe result.elf 03000000220000007502000062000000
+./bin2elf 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
+./bin2sin result.elf 03000000220000007502000062000000
 rm result.elf
 mv result.elf.sin kernel.sin
 echo Manifest-Version: 1.0 > manifest.mf
