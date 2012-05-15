@@ -2,20 +2,20 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 echo -----------------------------------------------------
-echo      DooMLoRD kernel.sin and FTF creator v1.0
-echo      modified by Championswimmer 
-echo      works with Wine and java 1.6 on Ubuntu
+echo      "Championswimmer's kernel.sin and FTF creator"
+echo      modified from DoomLord FTF creator for X10 for windows 
 
-echo -----------------------------------------------------
-echo                FOR XPERIA X10 ONLY
-echo -----------------------------------------------------
+
+echo ------------------------------------------------------------
+echo                FOR XPERIA X10, X8, Mini and MiniPro
+echo ------------------------------------------------------------
 echo   Credits: 
 echo      the_laser - sin packer tools
 echo      Androxyde - FTF packer tools
 echo      DooMLoRD  - making this easy for all 
 echo      championswimmer  - bringing it to linux 
 echo -----------------------------------------------------
-echo  THIS WONT RUN WIHOUT WINE AND JAVA 1.6
+
 
 echo   before you begin make sure that:
 echo
@@ -45,8 +45,31 @@ else
 	cp $1 ./image
 	cp $2 ./ramdisk
 fi
-./bin2elf 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
-./bin2sin result.elf 03000000220000007502000062000000
+DEVICE=0
+echo
+echo "Please mention for which device you are packing kernel"
+echo "For X10, enter 1"
+echo "For X8, Mini or MiniPro enter 2"
+echo "Type either 1 or 2 and press enter"
+read DEVICE
+
+if [ $DEVICE = '1' ]
+then
+	./bin2elf 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
+	./bin2sin result.elf 03000000220000007502000062000000
+else
+	if [ $DEVICE = '2' ]
+	then
+		./bin2elf 2 0x208000 image 0x208000 0x0 ramdisk 0x1000000 0x80000000
+		./bin2sin result.elf 03000000010000402001000040000000
+	else
+		echo "You did not specify valid device"
+		rm image ramdisk
+		exit
+		
+	fi
+fi
+
 rm result.elf
 mv result.elf.sin kernel.sin
 echo Manifest-Version: 1.0 > manifest.mf

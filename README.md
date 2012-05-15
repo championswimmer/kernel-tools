@@ -25,12 +25,13 @@ NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 
 
 ***********
-### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall)
-(only for Xperia X10i or X10a for now)
+### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall)   
 
 #####   For linux use this
 This uses freexperia's bin2sin and bin2elf linux binaries (thanks nobodyAtall for informing me of them)   
-And the script is a modified version of DoomLord's Kernel.ftf creator script for Windows (Xperia X10)   
+And the script is a modified version of DoomLord's Kernel.ftf creator script for Windows   
+(update: Now supports X10, X8, X10Mini and X10MiniPro)
+(update: You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf)
 
 You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
 folder and run this command
@@ -40,6 +41,7 @@ folder and run this command
 Or for more advanced funtionality use this
 
 	./kernel-tools/pack-kernel/ftf/build /path/to/zImage /path/to/ramdisk.cpio.gz
+	
 NOTE: The paths must be absolute paths to the files
 _ _ _
 #####  For windows use BUILD-IT.bat file instead
