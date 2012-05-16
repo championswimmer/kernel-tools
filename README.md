@@ -7,8 +7,10 @@ tools to tinker with kernels and ramdisks
 ####Android Boot Image modifier package
 	sudo apt-get install abootimg
 
+####Install Wine
+12May'12 : As of now required only by "ftf creation" area of kitchen (only Xperia)
 
-
+	sudo apt-get install wine
 **********
 ### 1. Unpacking kernel contents from ftf 
 (required for Xperia series of smartphones only)
@@ -23,15 +25,22 @@ tools to tinker with kernels and ramdisks
 	
 NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 
+### 2. Re-packing ramdisk folder
+
+######   Re-pack 'ramdisk' folder into 'ramdisk.cpio.gz'. The output file is to be renamed to just 'ramdisk' to be used when creating kernel.sin
+
+this if for linux. this script simply recompress the folder 'ramdisk' into the gzip file 'newramdisk.cpio.gz'
+
+CD to the directory that contains the 'ramdisk' folder to be compressed, then copy file 'repackramdisk' and use this command
+
+	./repackramdisk
 
 ***********
-### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall)   
+### 3. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser)
+(only for Xperia X10i or X10a for now)
 
 #####   For linux use this
-This uses freexperia's bin2sin and bin2elf linux binaries (thanks nobodyAtall for informing me of them)   
-And the script is a modified version of DoomLord's Kernel.ftf creator script for Windows   
-(update: Now supports X10, X8, X10Mini and X10MiniPro)
-(update: You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf)
+I have ported DoomLord's script onto Linux but it needs wine to work
 
 You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
 folder and run this command
@@ -41,12 +50,10 @@ folder and run this command
 Or for more advanced funtionality use this
 
 	./kernel-tools/pack-kernel/ftf/build /path/to/zImage /path/to/ramdisk.cpio.gz
-	
 NOTE: The paths must be absolute paths to the files
 _ _ _
 #####  For windows use BUILD-IT.bat file instead
 this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha ha
-(This is purely DoomLord's work. I have done no additions to it)
 
 	cd kernel-tools
 	cd pack-kernel
