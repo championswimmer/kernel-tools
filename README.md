@@ -19,7 +19,7 @@ tools to tinker with kernels and ramdisks
    update2: automatised the process now to accept arguements   
    use this command 
  
-	./unpack-kernel/ftf/unpack path/to/kernel.ftf
+	./edit-kernel/ftf/unpack path/to/kernel.ftf
 	
 NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
 
@@ -36,11 +36,11 @@ And the script is a modified version of DoomLord's Kernel.ftf creator script for
 You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
 folder and run this command
 
-	./kernel-tools/pack-kernel/ftf/build
+	./edit-kernel/ftf/build
 	
 Or for more advanced funtionality use this
 
-	./kernel-tools/pack-kernel/ftf/build /path/to/zImage /path/to/ramdisk.cpio.gz
+	./edit-kernel/ftf/build /path/to/zImage /path/to/ramdisk.cpio.gz
 	
 NOTE: The paths must be absolute paths to the files
 _ _ _
