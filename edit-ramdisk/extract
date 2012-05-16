@@ -1,27 +1,38 @@
 #!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
 echo "---------------------------------------------------------"
 echo "-----------Extract Ramdisk (Android )-------------------"
-echo "ramdisk should be named 'initrd.img' or 'ramdisk.cpio.gz'"
+echo "Please make sure that "
+echo "ramdisk is named 'ramdisk.cpio.gz' or 'initrd.img'"
+echo "and kept in input folder"
+echo
+echo "or"
+echo
+echo "you have called ramdisk file in arguement"
 
-
-
-if [  -e initrd.img  -a  -e ramdisk.cpio.gz   ]
+if [ ! $1 ]
 then
+	if [  -e ../input/initrd.img  -a  -e ../input/ramdisk.cpio.gz   ]
+	then
 	
-	echo "Please use either initrd.img or ramdisk.cpio.gz "
-	echo "I cannot extract more than one ramdisk together"
-	echo "There should be only one ramdisk"
-	exit
-fi
+		echo "Please use either initrd.img or ramdisk.cpio.gz "
+		echo "I cannot extract more than one ramdisk together"
+		echo "There should be only one ramdisk"
+		exit
+	fi
 
-if [ -e initrd.img ]
-then
-	mv -f initrd.img ramdisk
-fi
+	if [ -e ../input/initrd.img ]
+	then
+		cp -f ../input/initrd.img ./ramdisk
+	fi
 
-if [ -e ramdisk.cpio.gz ]
-then 
-	mv -f ramdisk.cpio.gz ramdisk
+	if [ -e ../input/ramdisk.cpio.gz ]
+	then 
+		cp -f ../input/ramdisk.cpio.gz ./ramdisk
+	fi
+else
+	cp -f $1 ./ramdisk
 fi
 
 if [ -e ramdisk ]
@@ -30,11 +41,15 @@ then
 	mkdir -p ramdisk-contents
 	cd ramdisk-contents
 	gunzip -c ../ramdisk | cpio -i
-	echo "ramdisk extracted to folder ramdisk-contents"
+	cd ..
+	mv ramdisk-contents ../output
+	rm -f ramdisk
+	echo "ramdisk extracted ramdisk-contents inside output directory"
 	echo "----------thank you !!! -----------"
 
 else
 	echo "Ramdisk not found!!"
 	echo " ----I'm Sorry!! ------"
+	exit
 	
 fi
