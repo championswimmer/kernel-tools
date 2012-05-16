@@ -1,0 +1,42 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo "---------------------------------------------------------"
+echo "-----------Pack Ramdisk (Android )-------------------"
+echo "Please make sure that "
+echo "ramdisk folder is named 'ramdisk-folder' "
+echo "and kept in input folder"
+echo
+echo "or"
+echo
+echo "you have called ramdisk folder in arguement"
+
+rm -f -r ramdisk-folder
+if [ ! $1 ]
+then
+	
+	if [ -d ../input/ramdisk-folder ]
+	then 
+		cp -f -r ../input/ramdisk-folder ./ramdisk-folder
+	fi
+else
+	cp -f -r $1 ./ramdisk-folder
+fi
+
+if [ -d ramdisk-folder ]
+then
+	rm -f ramdisk.cpio.gz
+	cd ramdisk-folder
+	find . | cpio -o -H newc | gzip > ../ramdisk.cpio.gz
+	cd ..
+	mv ramdisk.cpio.gz ../output
+	rm -f -r ramdisk-folder
+	echo "ramdisk.cpio.gz created inside output directory"
+	echo "----------thank you !!! -----------"
+
+else
+	echo "Ramdisk Folder not found!!"
+	echo " ----I'm Sorry!! ------"
+	exit
+	
+fi
