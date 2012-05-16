@@ -79,7 +79,7 @@ or for more advanced functionality, use the arguement to call ramdisk from other
 Note: The path must be absolute path
 
 _ _ _
-###1. Extracting ramdisks
+###2. (re)packing ramdisks
 This works on linux or with cygwin (with cpio and gzip installed)
 Keep the ramdisk folder inside input folder named as "ramdisk-folder" and run this  
 
