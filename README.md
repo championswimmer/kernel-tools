@@ -78,5 +78,19 @@ or for more advanced functionality, use the arguement to call ramdisk from other
 	./edit-ramdisk/extract path/to/ramdisk
 Note: The path must be absolute path
 
+_ _ _
+###1. Extracting ramdisks
+This works on linux or with cygwin (with cpio and gzip installed)
+Keep the ramdisk folder inside input folder named as "ramdisk-folder" and run this  
+
+	./edit-ramdisk/pack
+
+or for more advanced functionality, use the arguement to call ramdisk folder from other location   
+
+	./edit-ramdisk/extract path/to/ramdisk/folder
+Note: The path must be absolute path   
+
+Note: The ramdisk folder should contain ramdisk contents directly inside it (i.e. the root of ramdisk-folder should contain init)
+
 
 
