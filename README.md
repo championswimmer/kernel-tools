@@ -10,6 +10,9 @@ tools to tinker with kernels and ramdisks
 
 
 **********
+__________
+##Working with FTF and SIN files (for Xperia with Flashtool)   
+
 ### 1. Unpacking kernel contents from ftf 
 (required for Xperia series of smartphones only)
 
@@ -21,11 +24,14 @@ tools to tinker with kernels and ramdisks
  
 	./edit-kernel/ftf/unpack path/to/kernel.ftf
 	
-NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder
+NOTE: if no arguement is given it uses the "kernel.ftf" file in input folder. thus you cas use only   
+
+	./edit-kernel/ftf/unpack
 
 
 ***********
-### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall)   
+### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall)
+(Required for Xperia X10, X8,  Mini and MiniPro only)   
 
 #####   For linux use this
 This uses freexperia's bin2sin and bin2elf linux binaries (thanks nobodyAtall for informing me of them)   
@@ -48,8 +54,7 @@ _ _ _
 this runs natively on Windows, no wine, whisky, beer or scotch needed ... ha ha ha
 (This is purely DoomLord's work. I have done no additions to it)
 
-	cd kernel-tools
-	cd pack-kernel
+	cd edit-kernel
 	cd ftf
 	BUILD-IT.bat
 	
@@ -58,4 +63,18 @@ The zImage and ramdisk should be placed inside the same folder as BUILD-IT.bat
 and they should be named "image" and "ramdisk"
 
 ***************
+_______________
+##Working with Ramdisks
+
+###1. Extracting ramdisks
+This works on linux or with cygwin (with cpio and gzip installed)
+Keep the ramdisk.cpio.gz or initrd.img file inside input folder and run this   
+	./edit-ramdisk/extract
+
+or for more advanced functionality, use the arguement to call ramdisk from other location   
+
+	./edit-ramdisk/extract path/to/ramdisk
+Note: The path must be absolute path
+
+
 
