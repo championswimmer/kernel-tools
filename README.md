@@ -17,7 +17,8 @@ __________
 (required for Xperia series of smartphones only)
 
 ######   Unpack ftf  file to zimage and ramdisk (credits DoomLord) 
-   this works on linux natively or on cygwin, but not native windows  
+   this works on linux natively or on cygwin, but not native windows   
+   This uses DoomLord's kernel.sin unpacker tool written in perl (with minor modifications)
    update : now you can directly use the ftf file, i have included an easy script for that   
    update2: automatised the process now to accept arguements   
    use this command 
