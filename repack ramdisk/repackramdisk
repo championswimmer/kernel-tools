@@ -1,0 +1,6 @@
+ #!/bin/bash
+#Place this file in the folder that contains 'ramdisk folder'
+#Output will be placed in one directory level back eg. /home/linux/<new .cpio.gz here>/ramdisk<to be compressed>repac
+echo "This will re-pack the folder 'ramdisk' into 'newramdisk.cpio.gz'"
+find . | cpio -o -H newc | gzip > ../newramdisk.cpio.gz
+echo "Your new ramdisk is one directory level back ../'newramdisk.cpio.gz'"
