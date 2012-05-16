@@ -69,7 +69,8 @@ _______________
 
 ###1. Extracting ramdisks
 This works on linux or with cygwin (with cpio and gzip installed)
-Keep the ramdisk.cpio.gz or initrd.img file inside input folder and run this   
+Keep the ramdisk.cpio.gz or initrd.img file inside input folder and run this  
+
 	./edit-ramdisk/extract
 
 or for more advanced functionality, use the arguement to call ramdisk from other location   
