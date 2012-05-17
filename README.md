@@ -10,7 +10,7 @@ tools to tinker with kernels and ramdisks
 ####ImageMagick (only for bootsplash image editing)
 	sudo apt-get install imagemagick   
 
-####GNU C Compiler 
+####GNU C Compiler (only for bootlogo editing, not required for x86_64)
 If rgb2565 and 5652rgb precompiled binaries are not present for your architecture   
 then they will be compiled for you on the fly   
 
@@ -117,11 +117,12 @@ Also ImageMagick program should be installed on your system
 <sup>NOTE: The script will ask you the size (width x height) of image while execution</sup>   
 
 keep your png file named as 'bootsplash.png' in input folder and run this   
+
 	./edit-image/png2rle
 
 or for more advanced functionality use argument to call the file   
 
-	./edit-image/pg2rle /path/to/filename.png   
+	./edit-image/png2rle /path/to/filename.png   
 
 The converted file will be found as 'bootsplash.rle' inside output folder
 
@@ -129,6 +130,7 @@ The converted file will be found as 'bootsplash.rle' inside output folder
 This was created by DoomLord to be used on windows. He has already provided precompiled binaries and cygwin.dll, so it can run natively on windows.
 
 place the png file inside edit-image folder and run this from command   
+
 	cd edit-image
 	png2rle.bat filename.png   
 
@@ -139,6 +141,7 @@ the output will be filename.png.rle inside the same folder
 <sup>NOTE: The script will ask you the size (width x height) of image while execution</sup>   
 
 keep your rle file named as 'bootsplash.rle' in input folder and run this   
+
 	./edit-image/rle2png
 
 or for more advanced functionality use argument to call the file   
@@ -153,6 +156,7 @@ This was created by DoomLord to be used on windows. He has already provided prec
 IMPORTANT: The default size is 480x854. For other sizes please manually edit the rle2png.bat file before using it.
 
 place the rle file inside edit-image folder and run this from command   
+
 	cd edit-image
 	png2rle.bat filename.rle   
 
