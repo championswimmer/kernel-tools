@@ -32,6 +32,7 @@ __________
    
 
 Keep the ftf file as "kernel.ftf" in input folder and run this  
+
 	./edit-kernel/ftf/unpack   
 
 Or for more advanced functionality you can call ftf file through argument   
