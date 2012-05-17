@@ -47,7 +47,7 @@ Or for more advanced functionality you can call ftf file through argument
 
 #####   For linux use this
 This uses freexperia's bin2sin and bin2elf linux binaries (thanks nobodyAtall for informing me of them)   
-And the script is a modified version of DoomLord's Kernel.ftf creator script for Windows   
+
 (update: Now supports X10, X8, X10Mini and X10MiniPro)
 (update: You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf)
 
