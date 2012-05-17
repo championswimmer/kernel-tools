@@ -31,6 +31,7 @@ then
 	then 
 		cp -f ../input/ramdisk.cpio.gz ./ramdisk
 	fi
+
 else
 	cp -f $1 ./ramdisk
 fi
@@ -42,7 +43,7 @@ then
 	cd ramdisk-contents
 	gunzip -c ../ramdisk | cpio -i
 	cd ..
-	mv ramdisk-contents ../output
+	mv -f ramdisk-contents ../output
 	rm -f ramdisk
 	echo "ramdisk extracted ramdisk-contents inside output directory"
 	echo "----------thank you !!! -----------"

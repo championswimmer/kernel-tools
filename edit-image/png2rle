@@ -1,0 +1,50 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo "----------------------------------------------------------"
+echo " Champ's PNG to RLE conversion script (Android bootsplash)"
+echo "----------------------------------------------------------"
+echo " ImageMagick is required. Make sure it is present "
+echo
+echo "make sure you have placed 'bootsplash.png' file in input folder"
+echo
+echo "or"
+echo
+echo "you have called the png file in argument"
+
+read -p "Press [Enter] key to continue"
+
+rm -f logo*
+if [ ! $1  ]
+	then
+		cp -f ../input/bootsplash.png ./logo.png
+	else
+		cp -f $1 ./logo.png
+fi
+
+if [ ! -e logo.png ]
+then
+	echo "png logo file not found"
+	exit
+fi
+
+ARCH=$(uname -m)
+
+if [ ! -e ./rgb2565.$ARCH ]
+	then
+		echo " Precompiled binary not found for your architecture"
+		echo " I will compile it for you now"
+		echo " Please ensure latest gcc is installed"
+		read -p "Press [Enter] key to continue"
+		gcc -O2 -Wall -Wno-unused-parameter -o rgb2565.$ARCH to565.c
+fi
+
+echo "Please type the size of image [eg. 480x854] and press enter to continue"
+read IMG_SIZE
+
+convert -depth 8 -size $IMG_SIZE logo.png rgb:logo.raw
+./rgb2565.$ARCH -rle < logo.raw > logo.rle
+
+cp -f logo.rle ../output/bootsplash.rle
+
+rm -f logo.png logo.rle logo.raw
