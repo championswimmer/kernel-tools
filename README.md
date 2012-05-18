@@ -22,14 +22,11 @@ __________
 ##Working with FTF and SIN files (for Xperia with Flashtool)   
 
 ### 1. Unpacking kernel contents from ftf 
-(required for Xperia series of smartphones only)
+(required for Xperia 2010, 2011, 2012 series of smartphones only)
 
-######   Unpack ftf  file to zimage and ramdisk (credits DoomLord) 
-   this works on linux natively or on cygwin, but not native windows   
-   This uses DoomLord's kernel.sin unpacker tool written in perl (with minor modifications)   
-   update : now you can directly use the ftf file, i have included an easy script for that   
-   update2: automatised the process now to accept arguements   
-   
+this extracts zimage and ramdisk from ftf file if it contains kernel.sin   
+this works on linux natively or on cygwin, but not native windows   
+
 
 Keep the ftf file as "kernel.ftf" in input folder and run this  
 
@@ -38,18 +35,16 @@ Keep the ftf file as "kernel.ftf" in input folder and run this
 Or for more advanced functionality you can call ftf file through argument   
 
 	./edit-kernel/ftf/unpack path/to/kernel.ftf   
-<sub>NOTE: The path must be absolute path to file</sub>   
+<sup>NOTE: The path must be absolute path to file</sup>   
 	
 
 ***********
-### 2. Creating Kernel.sin and flashable ftf files (credits DoomLord, Androxyde, the_laser, nobodyAtall, freexperia-team)
-(Required for Xperia X10, X8,  Mini and MiniPro only)   
+### 2. Creating Kernel.sin and flashable ftf files 
+(Required for Xperia X10, X8,  X10 Mini and X10 MiniPro only)   
 
-#####   For linux use this
-This uses freexperia's bin2sin and bin2elf linux binaries (thanks nobodyAtall for informing me of them)   
-
-(update: Now supports X10, X8, X10Mini and X10MiniPro)
-(update: You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf)
+#####   For linux 
+The script will ask during execution if you want ftf file for X10 or msm-7x27 device (X8, Mini, MiniPro)   
+You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf
 
 You can keep zImage as "image" and ramdisk archive as "ramdisk" inside input
 folder and run this command
@@ -60,13 +55,13 @@ Or for more advanced funtionality use this
 
 	./edit-kernel/ftf/build /path/to/zImage /path/to/ramdisk.cpio.gz
 	
-<sub>NOTE: The paths must be absolute paths to the files.</sub>   
+<sup>NOTE: The paths must be absolute paths to the files.</sup>   
 
 The ftf file can be found inside output folder named as (kernel)-(version).ftf
 _ _ _
 #####  For windows use BUILD-IT.bat file instead
-this runs natively on Windows
-(This is purely DoomLord's work. I have done no additions to it)
+this runs natively on Windows (without cygwin)
+
 
 	cd edit-kernel
 	cd ftf
@@ -89,7 +84,7 @@ Keep the ramdisk.cpio.gz or initrd.img file inside input folder and run this
 or for more advanced functionality, use the arguement to call ramdisk from other location   
 
 	./edit-ramdisk/extract path/to/ramdisk   
-<sub>Note: The path must be absolute path</sub>
+<sup>Note: The path must be absolute path</sup>
 
 _ _ _
 ###2. (re)packing ramdisks
@@ -101,11 +96,11 @@ Keep the ramdisk folder inside input folder named as "ramdisk-folder" and run th
 or for more advanced functionality, use the arguement to call ramdisk folder from other location   
 
 	./edit-ramdisk/extract path/to/ramdisk/folder
-<sub>Note: The path must be absolute path</sub>   
+<sup>Note: The path must be absolute path</sup>   
 
 The packed ramdisk can be found as 'ramdisk.cpio.gz' inside output folder
 
-<sub>Note: The ramdisk folder should contain ramdisk contents directly inside it (i.e. the root of ramdisk-folder should contain init)</sub>
+<sup>Note: The ramdisk folder should contain ramdisk contents directly inside it (i.e. the root of ramdisk-folder should contain init)</sup>
 
 ***********************
 ______________________
@@ -127,8 +122,8 @@ or for more advanced functionality use argument to call the file
 
 The converted file will be found as 'bootsplash.rle' inside output folder
 
-####for windows (credits DoomLord)
-This was created by DoomLord to be used on windows. He has already provided precompiled binaries and cygwin.dll, so it can run natively on windows.
+####for windows 
+This runs natively on windows (without cygwin)   
 
 place the png file inside edit-image folder and run this from command   
 
@@ -151,8 +146,8 @@ or for more advanced functionality use argument to call the file
 
 The converted file will be found as 'bootsplash.png' inside output folder
 
-####for windows (credits DoomLord)
-This was created by DoomLord to be used on windows. He has already provided precompiled binaries and cygwin.dll, so it can run natively on windows.
+####for windows 
+This runs natively on windows.   
 
 IMPORTANT: The default size is 480x854. For other sizes please manually edit the rle2png.bat file before using it.
 
@@ -162,5 +157,6 @@ place the rle file inside edit-image folder and run this from command
 	png2rle.bat filename.rle   
 
 the output will be filename.rle.png inside the same folder   
+
 
 
