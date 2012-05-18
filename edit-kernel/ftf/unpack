@@ -7,13 +7,14 @@ echo "        using DoomLord's Kernel.sin unpacker perl script "
 echo " --------------------------------------------------------"
 
 read -p "Press [Enter] to continue"
+rm -f ./kernel.ftf
 if [  $1 ]
 then
-	cp $1 kernel.ftf
+	cp $1 ./kernel.ftf
 else
 	if [ -e ../../input/kernel.ftf ]
 	then
-		cp ../../input/kernel.ftf kernel.ftf
+		cp ../../input/kernel.ftf ./kernel.ftf
 	else
 		echo "Please place kernel.ftf file in input folder"
 		exit
@@ -23,16 +24,15 @@ fi
 
 if [ -e kernel.ftf ]
 then
-	rm -f temp.ftf
-	cp *.ftf temp.ftf
-	jar xvf temp.ftf kernel.sin
-	rm -f temp.ftf
+	jar xvf kernel.ftf kernel.sin
+	rm -f kernel.ftf
 	./unpack-kernelsin.pl kernel.sin
 else
 	echo "No ftf found"
 	rm kernel.ftf
 	exit
 fi
+
 rm -r -f kernel-contents
 mkdir -p kernel-contents
 rm -f *.ftf

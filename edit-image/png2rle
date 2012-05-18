@@ -28,7 +28,7 @@ then
 	exit
 fi
 
-ARCH=$(uname -m)
+ARCH=$(uname -s).$(uname -m)
 
 if [ ! -e ./rgb2565.$ARCH ]
 	then
