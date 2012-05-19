@@ -4,15 +4,17 @@ tools to tinker with kernels and ramdisks
 
 ## Install Pre-requisite Packages
 
-####Android Boot Image modifier package (to work with boot.img files)
+####Android Boot Image modifier package (optional, as it can be compiled by the kitchen too)
 	sudo apt-get install abootimg   
 
 ####ImageMagick (only for bootsplash image editing)
 	sudo apt-get install imagemagick   
 
-####GNU C Compiler (only for bootlogo editing, not required for x86_64)
+####GNU C Compiler (for png2rle, rle2png & boot.img editing || not required for Linux x86_64)
 If rgb2565 and 5652rgb precompiled binaries are not present for your architecture   
 then they will be compiled for you on the fly   
+Also if you have not installed abootimg package, then it will be compiled for you by the kitchen   
+
 
 	sudo apt-get install gcc
 
