@@ -2,7 +2,7 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 
-rm -f initrd.img zImage bootimg.cfg boot.img
+rm -f initrd.img zImage *.cfg boot.img
 
 
 if [ ! $1 -o ! $2 ]
@@ -11,6 +11,7 @@ then
 	then
 		cp ../../input/zImage ./zImage
 		cp ../../input/initrd.img ./initrd.img
+		
 	else
 		echo "-------------ERROR-----------------"
 		echo "image and ramdisk not found in input folder"
@@ -33,53 +34,32 @@ echo "Type the name of the configuration file you want to use and press [Enter] 
 read BOOT_CONFIG
 if [ -e ./bootimg-configs/$BOOT_CONFIG ]
 then
-	cp ./bootimg-configs/$BOOT_CONFIG ./bootimg.cfg
+	. bootimg-configs/$BOOT_CONFIG
 else
-	if [ -e ./bootimg-configs/$BOOT_CONFIG.cfg ]
-	then
-		cp ./bootimg-configs/$BOOT_CONFIG.cfg ./bootimg.cfg
-	else
-		echo "No such configuration found"
-		echo "please enter configurations manually"
-		read -p " pagesize = " PSIZE
-		read -p " kerneladdr = " KADDR		
-		read -p " ramdiskaddr = " RADDR
-		read -p " secondaddr = " SADDR
-		read -p " tagsaddr =" TADDR
-		read -p " name = " BNAME
-		read -p " cmdline = " CLINE
-		touch bootimg.cfg
-		echo "pagesize = $PSIZE" >> ./bootimg.cfg
-		echo "kerneladdr = $KADDR" >> ./bootimg.cfg
-		echo "ramdiskaddr = $RADDR" >> ./bootimg.cfg
-		echo "secondaddr = $SADDR" >> ./bootimg.cfg
-		echo "tagsaddr = $TADDR" >> ./bootimg.cfg
-		echo "name = $BNAME" >> ./bootimg.cfg
-		echo "cmdline = $CLINE" >> ./bootimg.cfg
-		
-	fi
+	echo "No such configuration found"
+	echo "please enter configurations manually"
+	read -p " base = " BASE
+	read -p " cmdline = " CMDLINE
 fi
-
+#####################################################done till here
 ARCH=$(uname -s).$(uname -m)
 
-if [ $(command -v abootimg) ]
+if [ ! -e ./mkbootimg.$ARCH ]
 then
-	
-	abootimg --create boot.img -f bootimg.cfg -k zImage -r initrd.img
-else
-	if [ ! -e ./abootimg.$ARCH ]
-	then
-		echo "=================================="
-		echo " abootimg not found on your system "
-		echo " I will compile it for you "
-		echo " please ensure you have gcc installed"
-		read -p "Press [Enter] to continue"
-		gcc abootimg.c -o abootimg.$ARCH
-	fi
-./abootimg.$ARCH --create boot.img -f bootimg.cfg -k zImage -r initrd.img
-
+	echo "=================================="
+	echo " mkbootimg not found on your system "
+	echo " I will compile it for you "
+	echo " please ensure you have gcc installed"
+	read -p "Press [Enter] to continue"
+	gcc -c rsa.c
+	gcc -c sha.c
+	gcc rsa.o sha.o mkbootimg.c -w -o mkbootimg.$ARCH
+	rm -f *.o
 fi
+./mkbootimg.$ARCH --cmdline "$CMDLINE" --base $BASE --kernel ./zImage --ramdisk ./initrd.img -o ./boot.img
 
-rm -f zImage initrd.img bootimg.cfg
+
+
+rm -f zImage initrd.img
 mv -f boot.img ../../output/.
 echo "Find compiled boot.img inside output folder"

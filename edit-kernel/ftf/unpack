@@ -24,7 +24,17 @@ fi
 
 if [ -e kernel.ftf ]
 then
-	jar xvf kernel.ftf kernel.sin
+	if [ $(command -v jar) ]
+	then
+		jar xvf kernel.ftf kernel.sin
+	else
+		echo "--------------ERROR-------------------------"
+		echo " 'jar' program not installed in your system "
+		echo " install 'java' or 'fastjar' or open-jdk or sun-java-jdk "
+		jar 		
+		rm -f kernel.ftf
+		exit
+	fi 
 	rm -f kernel.ftf
 	./unpack-kernelsin.pl kernel.sin
 else

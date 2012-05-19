@@ -1,0 +1,58 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+
+rm -f initrd.img zImage bootimg.cfg boot.img
+rm -f -r ramdisk-contents
+
+if [ ! $1 ]
+	then
+		cp -f ../../input/boot.img ./boot.img
+	else
+		cp -f $1 ./boot.img
+fi
+
+if [ ! -e boot.img ]
+	then
+		echo "boot.img not found :( "
+		exit
+fi
+
+ARCH=$(uname -s).$(uname -m)
+
+if [ $(command -v abootimg) ]
+then
+	abootimg -x boot.img
+else
+	if [ ! -e ./abootimg.$ARCH ]
+	then
+		echo "=================================="
+		echo " abootimg not found on your system "
+		echo " I will compile it for you "
+		echo " please ensure you have gcc installed"
+		read -p "Press [Enter] to continue"
+		gcc abootimg.c -o abootimg.$ARCH
+	fi
+./abootimg.$ARCH -x boot.img
+
+fi
+
+rm boot.img
+echo "================================"
+echo "Please give a name to save the boot.img configuration file [eg. my_x10_bootimgconfig]"
+echo "This configuration file will be required to create new boot.img for this device"
+echo "Type the name and press [Enter] to save it"
+read BOOT_CONFIG_NAME
+cp -f ./bootimg.cfg ./bootimg-configs/$BOOT_CONFIG_NAME.cfg
+sed -i '/boot/ d' ./bootimg-configs/$BOOT_CONFIG_NAME.cfg
+echo "Configuration saved for future use"
+mkdir -p ramdisk-contents
+cd ramdisk-contents
+gunzip -c ../initrd.img | cpio -i
+cd ..
+mv -f zImage ../../output/.
+mv -f initrd.img ../../output/.
+mv -f bootimg.cfg ../../output/.
+rm -f -r ../../output/ramdisk-contents
+mv ramdisk-contents ../../output/.
+echo "Find zImage, initrd.img, bootimg.cfg and ramdisk-contents inside output folder"
