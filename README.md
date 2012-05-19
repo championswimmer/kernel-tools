@@ -4,16 +4,17 @@ tools to tinker with kernels and ramdisks
 
 ## Install Pre-requisite Packages
 
-####Android Boot Image modifier package (optional, as it can be compiled by the kitchen too)
-	sudo apt-get install abootimg   
+####Java archiver 'jar' tool (only required if you work with ftf files)
+If you have java, jre, open-jdk or sun-java-jdk installed then jar should be already present in your system, other wise install it by running   
+	sudo apt-get install fastjar   
 
 ####ImageMagick (only for bootsplash image editing)
 	sudo apt-get install imagemagick   
 
 ####GNU C Compiler (for png2rle, rle2png & boot.img editing || not required for Linux x86_64)
-If rgb2565 and 5652rgb precompiled binaries are not present for your architecture   
+If rgb2565 and 5652rgb (bootsplash editing) precompiled binaries are not present for your architecture   
 then they will be compiled for you on the fly   
-Also if you have not installed abootimg package, then it will be compiled for you by the kitchen   
+Also if you abootimg, mkbootimg or mkbootfs binaries for your architecture are not present, then it will be compiled for you by the kitchen   
 
 
 	sudo apt-get install gcc
@@ -35,7 +36,7 @@ or for more advanced funtioinality call the file using argument
 	./edit-kernel/bootimg/unpack /path/to/boot.img
 <sup> NOTE : The path must be an absolute path to file </sup>
 
-While execution, the script will ask you to provide a name with which it will save the boot.img configuration (kernel, ramdisk address etc)   
+While execution, the script will ask you to provide a name with which it will save the boot.img configuration (base address and cmdline)   
 This is necessary so that when you next time build a boot.img for that same device, it can use the saved configuration   
 
 ## 2. building boot.img from zImage and ramdisk
