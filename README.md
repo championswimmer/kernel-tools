@@ -18,6 +18,39 @@ Also if you have not installed abootimg package, then it will be compiled for yo
 
 	sudo apt-get install gcc
 
+**********
+__________
+##Working with boot.img files 
+
+## 1. unpacking kernel contents from boot.img
+This unpacks zImage and initrd.img (ramdisk) from boot.img   
+This will also extract the contents of ramdisk for you   
+
+keep the "boot.img" file inside input folder and run this command   
+
+	./edit-kernel/bootimg/unpack
+
+or for more advanced funtioinality call the file using argument   
+
+	./edit-kernel/bootimg/unpack /path/to/boot.img
+<sup> NOTE : The path must be an absolute path to file </sup>
+
+While execution, the script will ask you to provide a name with which it will save the boot.img configuration (kernel, ramdisk address etc)   
+This is necessary so that when you next time build a boot.img for that same device, it can use the saved configuration   
+
+## 2. building boot.img from zImage and ramdisk
+This will create a boot.img file using zImage and ramdisk.   
+It can use a previously saved boot.img configuration (see above), or if you wish you can manually enter kernel, ramdisk addresses during execution of script.   
+
+keep the kernel as "zImage" and ramdisk as "initrd.img" inside input folder and run   
+
+	./edit-kernel/bootimg/build
+
+or for more advanced funtionality call the zimage and ramdisk through arguement   
+
+	./edit-kernel/bootimg/build /path/to/zimage /path/to/ramdisk
+
+
 
 **********
 __________
