@@ -1,0 +1,52 @@
+#!/bin/bash
+clear
+echo "============================================================="
+echo " NOTE : If you are not on Linux 64bit environment, we will"
+echo "        need to compile some files for you."
+echo "       Please ensure gcc (GNU C Compiler) is installed"
+echo "============================================================="
+echo " INFO : To extract kernel and ramdisk from bootimage,"
+echo "        place the file in input folder and name it 'boot.img'"
+echo ""
+echo "        To create boot.img, keep the kernel and ramdisk "
+echo "        in the input folder and name them 'zImage' and"
+echo "        'initrd.img' respectively "
+echo ""
+echo "        When you unpack a boot.img you get the option to save"
+echo "        its configuration (base address and cmdline) to a file"
+echo "        so that you can use it later to create boot.img"
+echo "        for the same device"
+echo "============================================================="
+read -p "Press [ENTER] to continue"
+clear
+
+echo 
+echo " Please choose your option "
+echo " (use alternate methods only if normal does not work)"
+echo ""
+echo "1. Extract boot.img"
+echo "2. Extract boot.img (alternate method)"
+echo "3. Create boot.img"
+echo "4. Create boot.img (alternate method)"
+echo
+read OPT
+
+case $OPT in
+	1) clear ;
+	./edit-kernel/bootimg/unpack ;
+	read ;;
+
+	2) clear ;
+	./edit-kernel/bootimg-alt/unpack ;
+	read ;;
+
+	3) clear ;
+	./edit-kernel/bootimg/build ;
+	read ;;
+
+	4) clear ;
+	./edit-kernel/bootimg-alt/build ;
+	read ;;
+esac
+
+

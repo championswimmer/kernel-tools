@@ -1,0 +1,47 @@
+#!/bin/bash
+clear
+
+echo "============================================================="
+echo " WARNING : bootsplash editing needs the 'ImageMagick' program"
+echo "           ensure that it is installed"
+echo "============================================================="
+echo " NOTE : If you are not on Linux 64bit environment, we will"
+echo "        need to compile some files for you."
+echo "       Please ensure gcc (GNU C Compiler) is installed"
+echo "============================================================="
+echo " INFO : The boot logo is present inside the ramdisk"
+echo "        It is usually called 'initlogo.rle' or 'logo.rle' "
+echo "        rle files can be converted to png to edit them"
+echo "        png files can be converted to rle to use as bootlogo"
+echo ""
+echo " You will need to enter dimension of image [eg. 320x240]"
+echo " while using this program"      
+echo "============================================================="
+read -p "Press [ENTER] to continue"
+clear
+
+echo 
+echo " Please choose your option "
+echo "(entering wrong option will take you back to main menu)"
+echo
+echo "1. Convert rle to png"
+echo "2. Convert png to rle"
+echo
+read OPT
+
+case $OPT in
+	1)
+	clear;	
+	echo "keep your file inside input folder and name it bootsplash.rle";
+	read -p "Press [ENTER] to continue";
+	./edit-image/rle2png
+	read ;;
+	2)
+	clear;
+	echo "keep your file inside input folder and name it bootsplash.png";
+	read -p "Press [ENTER] to continue";
+	./edit-image/png2rle
+	read ;;
+	
+esac
+

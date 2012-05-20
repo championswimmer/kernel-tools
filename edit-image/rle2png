@@ -46,5 +46,7 @@ read IMG_SIZE
 convert -depth 8 -size $IMG_SIZE rgb:logo.raw logo.png
 
 cp -f logo.png ../output/bootsplash.png
+echo "----------------------------"
+echo " Please find converted file bootsplash.png inside output folder"
 
 rm -f logo.png logo.rle logo.raw

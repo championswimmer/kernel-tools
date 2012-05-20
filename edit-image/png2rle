@@ -46,5 +46,6 @@ convert -depth 8 -size $IMG_SIZE logo.png rgb:logo.raw
 ./rgb2565.$ARCH -rle < logo.raw > logo.rle
 
 cp -f logo.rle ../output/bootsplash.rle
-
+echo "-------------------------------------"
+echo "Find converted bootsplash.rle inside output folder "
 rm -f logo.png logo.rle logo.raw

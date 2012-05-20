@@ -1,0 +1,55 @@
+#!/bin/bash
+export TOPDIR=$(cd $(dirname "$0"); pwd)
+cd $TOPDIR
+export K_VER=0.0.2
+export KITCHEN=$TOPDIR/menu
+export INDIR=$TOPDIR/input
+export OUTDIR=$TOPDIR/output
+echo "=============================================================="
+echo "        Welcome to ANDROID KERNEL KITCHEN $K_VER              "
+echo "                  by championswimmer                          "
+echo "--------------------------------------------------------------"
+
+echo "your current kitchen configurations are : - "
+echo " System             =" $(uname -s) 
+echo " Architecture       =" $(uname -m)
+echo " kitchen directory  =" $TOPDIR
+echo " input directory    =" $INDIR
+echo " output directory   =" $OUTDIR
+echo " gcc version        =" $(gcc -dumpversion)
+echo " perl binary        =" $(command -v perl)
+echo " gzip binary        =" $(command -v gzip)
+echo " gunzip binary      =" $(command -v gunzip)
+echo " Imagemagick binary =" $(command -v convert)
+echo " current user       =" $(whoami)
+echo "--------------------------------------------------------------" 
+echo " If any of the above mentioned information is incorrect or "
+echo " the field is empty, then kernel kitchen may not work "
+echo " properly."
+echo "=============================================================="
+read -p "Press [ENTER] to continue"
+clear
+echo 
+echo "The kitchen can perform the following functions"
+echo
+echo "1.  Work with boot.img files (extract or build)"
+echo "2.  Work with kernel.sin and ftf files (extract or build) for Xperia"
+echo "3.  Work with init ramdisk (compress or extract)"
+echo "4.  Editing bootsplash images"
+echo
+echo "Q.  Quit kitchen"
+echo
+echo " Enter desired option number (without . after it) and press enter"
+read OPT
+export DO=$TOPDIR/menuscripts
+case $OPT in
+	1) $DO/bootimg ;;
+	2) $DO/sinftf ;;
+	3) $DO/ramdisk ;;
+	4) $DO/bootsplash ;;
+	Q) clear; echo "Goodbye"; read; exit;;
+	q) clear; echo "Goodbye"; read; exit;;
+esac
+
+clear
+$KITCHEN
