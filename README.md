@@ -12,10 +12,8 @@ If you have java, jre, open-jdk or sun-java-jdk installed then jar should be alr
 ####ImageMagick (only for bootsplash image editing)
 	sudo apt-get install imagemagick   
 
-####GNU C Compiler (for png2rle, rle2png & boot.img editing || not required for Linux x86_64)
-If rgb2565 and 5652rgb (bootsplash editing) precompiled binaries are not present for your architecture   
-then they will be compiled for you on the fly   
-Also if you abootimg, mkbootimg or mkbootfs binaries for your architecture are not present, then it will be compiled for you by the kitchen   
+####GNU C Compiler ( not required for Linux x86_64)
+Some funtions need precompiled binaries for your architecture to work. The sources are already present inside the kitchen and the binaries will be compiled during execution. (as I'm using Linux 64bit, binaries for this architecture are already present)   
 
 
 	sudo apt-get install gcc
@@ -24,7 +22,7 @@ Also if you abootimg, mkbootimg or mkbootfs binaries for your architecture are n
 __________
 ##Working with boot.img files 
 
-## 1. unpacking kernel contents from boot.img
+### 1. unpacking kernel contents from boot.img
 This unpacks zImage and initrd.img (ramdisk) from boot.img   
 This will also extract the contents of ramdisk for you   
 
@@ -40,7 +38,7 @@ or for more advanced funtioinality call the file using argument
 While execution, the script will ask you to provide a name with which it will save the boot.img configuration (base address and cmdline)   
 This is necessary so that when you next time build a boot.img for that same device, it can use the saved configuration   
 
-## 2. building boot.img from zImage and ramdisk
+### 2. building boot.img from zImage and ramdisk
 This will create a boot.img file using zImage and ramdisk.   
 It can use a previously saved boot.img configuration (see above), or if you wish you can manually enter kernel, ramdisk addresses during execution of script.   
 
