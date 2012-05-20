@@ -6,6 +6,7 @@ tools to tinker with kernels and ramdisks
 
 ####Java archiver 'jar' tool (only required if you work with ftf files)
 If you have java, jre, open-jdk or sun-java-jdk installed then jar should be already present in your system, other wise install it by running   
+
 	sudo apt-get install fastjar   
 
 ####ImageMagick (only for bootsplash image editing)
@@ -122,6 +123,10 @@ or for more advanced functionality, use the arguement to call ramdisk from other
 	./edit-ramdisk/extract path/to/ramdisk   
 <sup>Note: The path must be absolute path</sup>
 
+ALTERNATE METHOD
+If you face any problem on MacOSX or cygwin (ramdisk not properly getting packed), then use the alternative script (argument is supported here too)    
+
+	./edit-ramdisk/extract-alt
 _ _ _
 ###2. (re)packing ramdisks
 This works on linux or with cygwin (with cpio and gzip installed)
@@ -137,6 +142,12 @@ or for more advanced functionality, use the arguement to call ramdisk folder fro
 The packed ramdisk can be found as 'ramdisk.cpio.gz' inside output folder
 
 <sup>Note: The ramdisk folder should contain ramdisk contents directly inside it (i.e. the root of ramdisk-folder should contain init)</sup>
+
+ALTERNATE METHOD
+If you face any problem on MacOSX or cygwin (ramdisk not properly getting packed), then use the alternative script (argument is supported here too)    
+
+	./edit-ramdisk/pack-alt
+<sup>the alternate method requires gcc to compile the mkbootfs binary </sup>
 
 ***********************
 ______________________

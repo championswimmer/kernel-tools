@@ -1,0 +1,51 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo "---------------------------------------------------------"
+echo "-----------Pack Ramdisk (Android )-------------------"
+echo "Please make sure that "
+echo "ramdisk folder is named 'ramdisk-folder' "
+echo "and kept in input folder"
+echo
+echo "or"
+echo
+echo "you have called ramdisk folder in arguement"
+
+rm -f -r ramdisk-folder
+if [ ! $1 ]
+then
+	
+	if [ -d ../input/ramdisk-folder ]
+	then 
+		cp -f -r ../input/ramdisk-folder ./ramdisk-folder
+	fi
+else
+	cp -f -r $1 ./ramdisk-folder
+fi
+
+ARCH=$(uname -s).$(uname -m)
+if [ ! -e ./mkbootfs.$ARCH ]
+then
+	echo " mkbootfs binary for your architecture not found "
+	echo " I will compile it for you "
+	echo " please ensure you have gcc (GNU C Compiler) installed"
+	read -p " Press [ENTER] to continue"
+	gcc mkbootfs.c -o mkbootfs.$ARCH
+fi
+
+
+if [ -d ramdisk-folder ]
+then
+	rm -f ramdisk.cpio.gz
+	./mkbootfs.$ARCH ./ramdisk-folder | gzip > initrd.img
+	mv initrd.img ../output
+	rm -f -r ramdisk-folder
+	echo "initrd.img created inside output directory"
+	echo "----------thank you !!! -----------"
+
+else
+	echo "Ramdisk Folder not found!!"
+	echo " ----I'm Sorry!! ------"
+	exit
+	
+fi

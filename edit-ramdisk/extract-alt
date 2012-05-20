@@ -41,7 +41,7 @@ then
 	rm -f -r ramdisk-contents
 	mkdir -p ramdisk-contents
 	cd ramdisk-contents
-	gunzip -c ../ramdisk | cpio -i
+	gzip -dc ../ramdisk | cpio -i
 	cd ..
 	rm -f -r ../output/ramdisk-contents
 	mv -f ramdisk-contents ../output
