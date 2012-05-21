@@ -50,6 +50,7 @@ then
 	echo "----------thank you !!! -----------"
 
 else
+	echo "------ERROR-------"
 	echo "Ramdisk not found!!"
 	echo " ----I'm Sorry!! ------"
 	exit

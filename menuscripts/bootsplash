@@ -1,9 +1,15 @@
 #!/bin/bash
 clear
 
-echo "============================================================="
-echo " WARNING : bootsplash editing needs the 'ImageMagick' program"
-echo "           ensure that it is installed"
+CHECKCONVERT=$(command -v convert)
+if [ ! $CHECKCONVERT ]
+then
+	echo " Image Magick (convert) is not present in your system"
+	echo " This script won't run without it"
+	read
+	exit
+fi
+
 echo "============================================================="
 echo " NOTE : If you are not on Linux 64bit environment, we will"
 echo "        need to compile some files for you."

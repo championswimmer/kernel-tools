@@ -1,2 +1,46 @@
 #!/bin/bash
 clear
+
+CHECKJAR=$(command -v jar)
+if [ ! $CHECKJAR ]
+then
+	echo " Java archiver (jar) is not present in your system"
+	echo " This script won't run without it"
+	echo " Please install java, or jdk, or iced-tea, or fastjar "
+	read
+	exit
+fi
+echo "============================================================="
+
+echo "============================================================="
+read -p "Press [ENTER] to continue"
+clear
+
+echo " Please choose your action"
+echo ""
+echo "1. Extracts kernel contents (image & ramdisk) from ftf file"
+echo "2. Create ftf file from kernel and ramdisk"
+echo "3. Extract contents from kernel.sin file (upcoming)"
+echo "4. Create kernel.sin from zImage and ramdisk (upcoming)"
+echo ""
+read OPT
+
+case $OPT in
+	1) clear ;
+	   echo "Keep the ftf file inside input folder and name it 'kernel.ftf' ";
+	   read -p "Press [ENTER] to continue";
+	   ./edit-kernel/ftf/unpack ;
+	   read ;;
+
+	2) clear ;
+	   echo "Keep the zImage and ramdisk in input folder and name them" ;
+	   echo "zImage and ramdisk.cpio.gz respectively" ;
+	   echo "--------------------------------------------------" ;
+           echo "You can provide kernel branding details during execution of program" ;
+	   echo " Like kernel name and version and developer's name" ;
+	   read -p "Press [ENTER] to continue" ;
+	   ./edit-kernel/ftf/build ;
+	   read ;;
+
+esac
+

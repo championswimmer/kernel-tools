@@ -1,2 +1,47 @@
 #!/bin/bash
 clear
+
+echo "============================================================="
+echo " NOTE : If you are not on Linux 64bit environment, we will"
+echo "        need to compile some files for you."
+echo "       Please ensure gcc (GNU C Compiler) is installed"
+echo "============================================================="
+read -p "Press [ENTER] to continue"
+clear
+
+echo 
+echo " Please choose your option "
+echo " (use alternate methods only if normal does not work)"
+echo ""
+echo "1. Extract ramdisk"
+echo "2. Extract ramdisk (alternate method)"
+echo "3. Pack ramdisk"
+echo "4. Pack ramdisk (alternate method)"
+echo
+read OPT
+
+case $OPT in
+	1) clear ;
+	   echo "Keep the ramdisk in input folder and name it 'initrd.img' or 'ramdisk.cpio.gz' " ;
+	   read -p "Press [ENTER] to continue..." ;
+	   ./edit-ramdisk/extract ;
+	   read ;;
+	2) clear ;
+	   echo "Keep the ramdisk in input folder and name it 'initrd.img' or 'ramdisk.cpio.gz' " ;
+	   read -p "Press [ENTER] to continue..." ;
+	   ./edit-ramdisk/extract-alt ;
+	   read ;;
+
+	3) clear ;
+	   echo "Keep the ramdisk folder in input  and name it 'ramdisk-folder' " ;
+	   read -p "Press [ENTER] to continue..." ;
+	   ./edit-ramdisk/pack ;
+	   read ;;
+
+	4) clear ;
+	   echo "Keep the ramdisk folder in input and name it 'ramdisk-folder' " ;
+	   read -p "Press [ENTER] to continue..." ;
+	   ./edit-ramdisk/pack-alt ;
+	   read ;;
+
+esac

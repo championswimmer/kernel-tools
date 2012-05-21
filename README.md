@@ -20,9 +20,37 @@ Some funtions need precompiled binaries for your architecture to work. The sourc
 
 **********
 __________
-##Working with boot.img files 
 
-### 1. unpacking kernel contents from boot.img
+##How to use
+
+go to terminal, cd to the top directory of kitchen and run   
+
+	./menu
+
+or if you are on ubuntu you can just double-click menu and click "Run in Terminal"
+
+
+___________________
+___________________
+___________________
+###For advanced manual usage, without using menu, read instructions below
+___________________
+___________________
+___________________
+
+
+
+
+
+
+
+
+
+
+
+####Working with boot.img files 
+
+##### 1. unpacking kernel contents from boot.img
 This unpacks zImage and initrd.img (ramdisk) from boot.img   
 This will also extract the contents of ramdisk for you   
 
@@ -38,7 +66,7 @@ or for more advanced funtioinality call the file using argument
 While execution, the script will ask you to provide a name with which it will save the boot.img configuration (base address and cmdline)   
 This is necessary so that when you next time build a boot.img for that same device, it can use the saved configuration   
 
-### 2. building boot.img from zImage and ramdisk
+##### 2. building boot.img from zImage and ramdisk
 This will create a boot.img file using zImage and ramdisk.   
 It can use a previously saved boot.img configuration (see above), or if you wish you can manually enter kernel, ramdisk addresses during execution of script.   
 
@@ -54,9 +82,9 @@ or for more advanced funtionality call the zimage and ramdisk through arguement
 
 **********
 __________
-##Working with FTF and SIN files (for Xperia with Flashtool)   
+####Working with FTF and SIN files (for Xperia with Flashtool)   
 
-### 1. Unpacking kernel contents from ftf 
+##### 1. Unpacking kernel contents from ftf 
 (required for Xperia 2010, 2011, 2012 series of smartphones only)
 
 this extracts zimage and ramdisk from ftf file if it contains kernel.sin   
@@ -74,10 +102,10 @@ Or for more advanced functionality you can call ftf file through argument
 	
 
 ***********
-### 2. Creating Kernel.sin and flashable ftf files 
+##### 2. Creating Kernel.sin and flashable ftf files 
 (Required for Xperia X10, X8,  X10 Mini and X10 MiniPro only)   
 
-#####   For linux 
+######   For linux 
 The script will ask during execution if you want ftf file for X10 or msm-7x27 device (X8, Mini, MiniPro)   
 You can enter branding details like kernel name, dev name and kernel version automatically while creating ftf
 
@@ -94,7 +122,7 @@ Or for more advanced funtionality use this
 
 The ftf file can be found inside output folder named as (kernel)-(version).ftf
 _ _ _
-#####  For windows use BUILD-IT.bat file instead
+######  For windows use BUILD-IT.bat file instead
 this runs natively on Windows (without cygwin)
 
 
@@ -108,9 +136,9 @@ and they should be named "image" and "ramdisk"
 
 ***************
 _______________
-##Working with Ramdisks
+####Working with Ramdisks
 
-###1. Extracting ramdisks
+#####1. Extracting ramdisks
 This works on linux or with cygwin (with cpio and gzip installed)
 Keep the ramdisk.cpio.gz or initrd.img file inside input folder and run this  
 
@@ -126,7 +154,7 @@ If you face any problem on MacOSX or cygwin (ramdisk not properly getting packed
 
 	./edit-ramdisk/extract-alt
 _ _ _
-###2. (re)packing ramdisks
+#####2. (re)packing ramdisks
 This works on linux or with cygwin (with cpio and gzip installed)
 Keep the ramdisk folder inside input folder named as "ramdisk-folder" and run this  
 
@@ -149,12 +177,12 @@ If you face any problem on MacOSX or cygwin (ramdisk not properly getting packed
 
 ***********************
 ______________________
-## Working with boot splash images
+#### Working with boot splash images
 This uses rgb2565 and 5652rgb binaries. If those precompiled binaries are not found, the script will compile them during execution using GNU C Compiler.
 Also ImageMagick program should be installed on your system
 
-###1. Converting png image to rle format
-####for linux   
+#####1. Converting png image to rle format
+######for linux   
 <sup>NOTE: The script will ask you the size (width x height) of image while execution</sup>   
 
 keep your png file named as 'bootsplash.png' in input folder and run this   
@@ -167,7 +195,7 @@ or for more advanced functionality use argument to call the file
 
 The converted file will be found as 'bootsplash.rle' inside output folder
 
-####for windows 
+######for windows 
 This runs natively on windows (without cygwin)   
 
 place the png file inside edit-image folder and run this from command   
@@ -177,8 +205,8 @@ place the png file inside edit-image folder and run this from command
 
 the output will be filename.png.rle inside the same folder   
 
-###2. Convert rle bootlogo to png image file
-####for Linux
+#####2. Convert rle bootlogo to png image file
+######for Linux
 <sup>NOTE: The script will ask you the size (width x height) of image while execution</sup>   
 
 keep your rle file named as 'bootsplash.rle' in input folder and run this   
@@ -191,7 +219,7 @@ or for more advanced functionality use argument to call the file
 
 The converted file will be found as 'bootsplash.png' inside output folder
 
-####for windows 
+######for windows 
 This runs natively on windows.   
 
 IMPORTANT: The default size is 480x854. For other sizes please manually edit the rle2png.bat file before using it.

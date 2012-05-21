@@ -44,6 +44,7 @@ then
 	echo "----------thank you !!! -----------"
 
 else
+	echo "-------ERROR----------"
 	echo "Ramdisk Folder not found!!"
 	echo " ----I'm Sorry!! ------"
 	exit
