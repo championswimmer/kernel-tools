@@ -12,7 +12,8 @@ If you have java, jre, open-jdk or sun-java-jdk installed then jar should be alr
 For cygwin users, you have to install the sun java jre BEFORE installing cygwin
 
 ####ImageMagick (only for bootsplash image editing)
-This is required for linux users. For cygwin, precompiled binary is already present.
+This is required for linux users. For cygwin, precompiled binary is already present.   
+
 	sudo apt-get install imagemagick   
 
 ####GNU C Compiler ( not required for Linux x86_64)
