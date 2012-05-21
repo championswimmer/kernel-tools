@@ -74,6 +74,7 @@ fi
 
 rm result.elf
 mv result.elf.sin kernel.sin
+cp -f loader_unlocked_$DEVID.sin loader.sin
 echo Manifest-Version: 1.0 > manifest.mf
 
 echo
@@ -97,4 +98,5 @@ rm manifest.mf
 rm image
 rm ramdisk
 rm kernel.sin
+rm loader.sin
 
