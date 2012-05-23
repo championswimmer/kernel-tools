@@ -1,14 +1,14 @@
 #!/bin/bash
 clear
 
-CHECKJAR=$(command -v jar)
-if [ ! $CHECKJAR ]
+
+if [ ! $(command -v jar) ]
 then
 	echo " Java archiver (jar) is not present in your system"
 	echo " This script won't run without it"
 	echo " Please install java, or jdk, or iced-tea, or fastjar "
 	read
-	exit
+	
 fi
 echo "============================================================="
 

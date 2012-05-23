@@ -91,7 +91,7 @@ echo device: $FTF_DEV >>  manifest.mf
 echo branding: $FTF_BRAND >>  manifest.mf
 echo Created-By: $FTF_AUTH >>  manifest.mf
 echo version: $FTF_VER >>  manifest.mf
-jar cvfm0 kernel.jar manifest.mf loader_unlocked_$DEVID.sin kernel.sin
+jar cvfm0 kernel.jar manifest.mf loader.sin kernel.sin
 mv kernel.jar $FTF_BRAND-$FTF_VER.ftf
 mv $FTF_BRAND-$FTF_VER.ftf ../../output/
 rm manifest.mf 
