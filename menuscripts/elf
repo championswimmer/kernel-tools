@@ -1,0 +1,44 @@
+#!/bin/bash
+clear
+
+
+if [ ! $(command -v 7z) ]
+then
+	echo " 7-zip (7z) is not present in your system"
+	echo " This script won't run without it"
+	echo " Please install 7z or 7-zip (p7zip won't work) "
+	read
+	
+fi
+echo "============================================================="
+
+echo "============================================================="
+read -p "Press [ENTER] to continue"
+clear
+
+echo " Please choose your action"
+echo ""
+echo "1. Extracts kernel contents (image & ramdisk) from elf file"
+echo "2. Create ftf file from kernel and ramdisk"
+echo ""
+read OPT
+
+case $OPT in
+	1) clear ;
+	   echo "Keep the elf file inside input folder and name it 'kernel.elf' ";
+	   read -p "Press [ENTER] to continue";
+	   ./edit-kernel/elf/unpack ;
+	   read ;;
+
+	2) clear ;
+	   echo "Keep the zImage and ramdisk in input folder and name them" ;
+	   echo "zImage and ramdisk.cpio.gz respectively" ;
+	   echo "--------------------------------------------------" ;
+           echo "You can provide kernel branding details during execution of program" ;
+	   echo " Like kernel name and version and developer's name" ;
+	   read -p "Press [ENTER] to continue" ;
+	   ./edit-kernel/ftf/build ;
+	   read ;;
+
+esac
+

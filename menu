@@ -33,9 +33,10 @@ echo
 echo "The kitchen can perform the following functions"
 echo
 echo "1.  Work with boot.img files (extract or build)"
-echo "2.  Work with kernel.sin and ftf files (extract or build) for Xperia"
-echo "3.  Work with init ramdisk (compress or extract)"
-echo "4.  Editing bootsplash images"
+echo "2.  Work with kernel.sin and ftf files (extract or build) for Xperia 2011/2010"
+echo "3.  Work with kernel.elf files (extract or build) for Xperia 2012 devices"
+echo "4.  Work with init ramdisk (compress or extract)"
+echo "5.  Editing bootsplash images"
 echo
 echo "Q.  Quit kitchen"
 echo
@@ -45,8 +46,9 @@ export DO=$TOPDIR/menuscripts
 case $OPT in
 	1) $DO/bootimg ;;
 	2) $DO/sinftf ;;
-	3) $DO/ramdisk ;;
-	4) $DO/bootsplash ;;
+	3) $DO/elf ;;
+	4) $DO/ramdisk ;;
+	5) $DO/bootsplash ;;
 	Q) clear; echo "Goodbye"; read; exit;;
 	q) clear; echo "Goodbye"; read; exit;;
 esac

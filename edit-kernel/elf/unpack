@@ -1,0 +1,67 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo " --------------------------------------------------------"
+echo "   Champ's Script to extract zImage and ramdisk from elf "
+echo " --------------------------------------------------------"
+
+read -p "Press [Enter] to continue"
+rm -f ./kernel.elf
+rm -f 0 1 2
+if [  $1 ]
+then
+	cp $1 ./kernel.elf
+else
+	if [ -e ../../input/kernel.elf ]
+	then
+		cp ../../input/kernel.elf ./kernel.elf
+	else
+		echo "--------ERROR---------------"
+		echo "Please place kernel.elf file in input folder"
+		exit
+	fi
+fi
+
+
+if [ -e kernel.elf ]
+then
+	if [ $(command -v 7z) ]
+	then
+		7z e kernel.elf
+	else
+		echo "--------------ERROR-------------------------"
+		echo " '7-zip' program not installed in your system "
+		echo " install '7z' or '7-zip'  "
+		7z 		
+		rm -f kernel.elf
+		exit
+	fi 
+	rm -f kernel.elf
+	mv 0 zImage
+	mv 1 ramdisk
+	mv 2 RPM.bin
+else
+	echo "No elf found"
+	rm kernel.elf
+	exit
+fi
+
+rm -r -f kernel-contents
+mkdir -p kernel-contents
+mv zImage kernel-contents/.
+mv ramdisk kernel-contents/.
+mv RPM.bin kernel-contents/.
+cd kernel-contents
+7z e ramdisk
+mkdir -p ramdisk-contents
+7z x "ramdisk~" -o"ramdisk-contents"
+rm -f ramdisk~
+cd ..
+mv kernel-contents ../../output/
+echo "------------------------------------------------------"
+echo " please open the output folder"
+echo "find your files inside kernel-contents folder"
+echo "ramdisk has been extracted to ramdisk sub-folder"
+echo "------------------------------------------------------"
+echo "----Thank you---"
+
