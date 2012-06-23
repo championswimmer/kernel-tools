@@ -1,0 +1,51 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo " ---------------------------------------------------------------------------------"
+echo " Champ's Kernel.elf packer for Xperia 2012 devices (using Sony's mkelf.py)"
+echo " ---------------------------------------------------------------------------------"
+
+rm -f 0 1 2 kernel.elf
+
+
+if [ ! $1 -o ! $2 ]
+then
+	if [ -e  ../../input/zImage -a -e ../../input/ramdisk ]
+	then
+		cp ../../input/zImage ./0
+		cp ../../input/ramdisk ./1
+		
+	else
+		echo "-------------ERROR-----------------"
+		echo "image and ramdisk not found in input folder"
+		exit
+	fi
+	if [ -e ../../input/RPM.bin ]
+	then
+		cp ../../input/RPM.bin ./2
+	
+else
+	cp $1 ./0
+	cp $2 ./1
+	if [ -e $3 ]
+	then
+		cp $3 ./2
+	fi
+fi
+
+if [ ! -e ./2 ]
+then
+	echo
+	echo " RPM has not been found and hence will not be used "
+	echo
+fi
+
+read
+####
+#work left here
+####
+
+
+rm -f 0 1 2 ../../output/kernel.elf
+mv -f kernel ../../output/.
+echo "Find compiled kernel.elf inside output folder"

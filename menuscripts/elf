@@ -19,7 +19,7 @@ clear
 echo " Please choose your action"
 echo ""
 echo "1. Extracts kernel contents (image & ramdisk) from elf file"
-echo "2. Create ftf file from kernel and ramdisk"
+echo "2. Create elf file from kernel and ramdisk"
 echo ""
 read OPT
 
@@ -32,12 +32,11 @@ case $OPT in
 
 	2) clear ;
 	   echo "Keep the zImage and ramdisk in input folder and name them" ;
-	   echo "zImage and ramdisk.cpio.gz respectively" ;
+	   echo "'zImage' and 'ramdisk' respectively" ;
 	   echo "--------------------------------------------------" ;
-           echo "You can provide kernel branding details during execution of program" ;
-	   echo " Like kernel name and version and developer's name" ;
+           echo "You'll be asked device name (S/P/U/Sola) during script execution" ;
 	   read -p "Press [ENTER] to continue" ;
-	   ./edit-kernel/ftf/build ;
+	   ./edit-kernel/elf/build ;
 	   read ;;
 
 esac
