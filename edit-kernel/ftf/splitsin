@@ -1,0 +1,50 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo " --------------------------------------------------------"
+echo "   Champ's Script to extract zImage and ramdisk from sin "
+echo "        using DoomLord's Kernel.sin unpacker perl script "
+echo " --------------------------------------------------------"
+
+read -p "Press [Enter] to continue"
+rm -f ./kernel.sin
+if [  $1 ]
+then
+	cp $1 ./kernel.sin
+else
+	if [ -e ../../input/kernel.sin ]
+	then
+		cp ../../input/kernel.sin ./kernel.sin
+	else
+		echo "Please place kernel.sin file in input folder"
+		exit
+	fi
+fi
+
+
+if [ ! -e kernel.sin ]
+then
+	
+	echo "No sin found"
+	rm kernel.sin
+	exit
+fi
+./unpack-kernelsin.pl kernel.sin
+rm -r -f kernel-contents
+mkdir -p kernel-contents
+rm -f kernel.sin
+mv kernel.sin* kernel-contents/.
+cd kernel-contents
+mv *.cpio.gz ramdisk.cpio.gz
+mv  *kernel zImage
+mv *header header-file
+mv kernel.sin-ramdisk ramdisk
+cd ..
+mv kernel-contents ../../output/
+echo "------------------------------------------------------"
+echo " please open the output folder"
+echo "find your files inside kernel-contents folder"
+echo "ramdisk has been extracted to ramdisk sub-folder"
+echo "------------------------------------------------------"
+echo "----Thank you---"
+

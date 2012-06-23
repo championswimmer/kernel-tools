@@ -42,5 +42,10 @@ case $OPT in
 	   ./edit-kernel/ftf/build ;
 	   read ;;
 
+	3) clear ;
+	   echo "Keep kernel.sin file in input folder" ;
+	   read -p "Press [ENTER] to continue";
+	   ./edit-kernel/ftf/splitsin ;
+	   read ;;
 esac
 
