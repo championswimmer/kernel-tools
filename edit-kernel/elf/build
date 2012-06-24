@@ -23,6 +23,7 @@ then
 	if [ -e ../../input/RPM.bin ]
 	then
 		cp ../../input/RPM.bin ./2
+	fi
 	
 else
 	cp $1 ./0
@@ -37,15 +38,15 @@ if [ ! -e ./2 ]
 then
 	echo
 	echo " RPM has not been found and hence will not be used "
+	echo " Xperia S kernel without RPM will not work"
 	echo
 fi
 
 read
-####
-#work left here
-####
+clear
+./build-menu
 
 
 rm -f 0 1 2 ../../output/kernel.elf
-mv -f kernel ../../output/.
+mv -f kernel.elf ../../output/.
 echo "Find compiled kernel.elf inside output folder"

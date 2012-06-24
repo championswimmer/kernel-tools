@@ -10,6 +10,15 @@ then
 	read
 	
 fi
+if [ ! $(command -v python) ]
+then
+	echo " python is not present in your system"
+	echo " This script won't run without it"
+	echo " Please install python "
+	python
+	read
+	
+fi
 echo "============================================================="
 
 echo "============================================================="
@@ -33,6 +42,7 @@ case $OPT in
 	2) clear ;
 	   echo "Keep the zImage and ramdisk in input folder and name them" ;
 	   echo "'zImage' and 'ramdisk' respectively" ;
+	   echo " also keep 'RPM.bin' in input folder for Xperia S" ;
 	   echo "--------------------------------------------------" ;
            echo "You'll be asked device name (S/P/U/Sola) during script execution" ;
 	   read -p "Press [ENTER] to continue" ;
