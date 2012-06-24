@@ -1,7 +1,7 @@
 #!/bin/bash
 export TOPDIR=$(cd $(dirname "$0"); pwd)
 cd $TOPDIR
-export K_VER=0.1.3
+export K_VER=0.2.0
 export KITCHEN=$TOPDIR/menu
 export INDIR=$TOPDIR/input
 export OUTDIR=$TOPDIR/output
