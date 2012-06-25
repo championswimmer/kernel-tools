@@ -52,11 +52,10 @@ mv zImage kernel-contents/.
 mv ramdisk kernel-contents/.
 mv RPM.bin kernel-contents/.
 cd kernel-contents
-7z e ramdisk
 mkdir -p ramdisk-contents
-7z x "ramdisk~" -o"ramdisk-contents"
-rm -f ramdisk~
-cd ..
+cd ramdisk-contents
+gunzip -c ../ramdisk | cpio -i
+cd ../..
 mv kernel-contents ../../output/
 echo "------------------------------------------------------"
 echo " please open the output folder"
