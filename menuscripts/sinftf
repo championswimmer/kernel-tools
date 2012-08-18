@@ -21,7 +21,7 @@ echo ""
 echo "1. Extracts kernel contents (image & ramdisk) from ftf file"
 echo "2. Create ftf file from kernel and ramdisk"
 echo "3. Extract contents from kernel.sin file "
-echo "4. Create kernel.sin from zImage and ramdisk (upcoming)"
+echo "4. Create kernel.sin from zImage and ramdisk"
 echo ""
 read OPT
 
@@ -46,6 +46,14 @@ case $OPT in
 	   echo "Keep kernel.sin file in input folder" ;
 	   read -p "Press [ENTER] to continue";
 	   ./edit-kernel/ftf/splitsin ;
+	   read ;;
+
+        4) clear ;
+	   echo "Keep the zImage and ramdisk in input folder and name them" ;
+	   echo "zImage and ramdisk.cpio.gz respectively" ;
+	   echo "--------------------------------------------------" ;
+	   read -p "Press [ENTER] to continue" ;
+	   ./edit-kernel/ftf/buildsin ;
 	   read ;;
 esac
 

@@ -1,0 +1,79 @@
+#!/bin/bash
+DIR=$(cd $(dirname "$0"); pwd)
+cd $DIR
+echo -----------------------------------------------------
+echo      "Championswimmer's kernel.sin creator"
+echo      modified from DoomLord FTF creator for X10 for windows 
+
+
+echo ------------------------------------------------------------
+echo                FOR XPERIA X10, X8, Mini and MiniPro
+echo ------------------------------------------------------------
+echo   Credits: 
+echo      the_laser - sin packer tools
+echo      Androxyde - FTF packer tools
+echo      DooMLoRD  - making this easy for all 
+echo      championswimmer  - bringing it to linux 
+echo -----------------------------------------------------
+
+
+echo   before you begin make sure that:
+echo
+echo      kernel zImage is called "zImage" 
+echo      ramdisk.cpio.gz is called "ramdisk.cpio.gz"
+echo      and both the files are present in input folder
+echo
+echo                 or 
+echo
+echo      you have specified paths while calling this program
+echo -----------------------------------------------------
+read -p "Press [Enter] key to create ftf..."
+
+if [ ! $1 -o ! $2 ]
+then
+	if [ -e  ../../input/zImage -a -e ../../input/ramdisk.cpio.gz ]
+	then
+		cp ../../input/zImage ./image
+		cp ../../input/ramdisk.cpio.gz ./ramdisk
+	else
+		echo "-------------ERROR-----------------"
+		echo "image and ramdisk not found in input folder"
+		exit
+	fi
+	
+else
+	cp $1 ./image
+	cp $2 ./ramdisk
+fi
+DEVICE=0
+echo
+echo "Please mention for which device you are packing kernel"
+echo "For X10, enter 1"
+echo "For X8, Mini or MiniPro enter 2"
+echo "Type either 1 or 2 and press enter"
+read DEVICE
+
+if [ $DEVICE = '1' ]
+then
+	./bin2elf 2 0x20008000 image 0x20008000 0x0 ramdisk 0x24000000 0x80000000
+	./bin2sin result.elf 03000000220000007502000062000000
+	DEVID=x10
+else
+	if [ $DEVICE = '2' ]
+	then
+		./bin2elf 2 0x208000 image 0x208000 0x0 ramdisk 0x1000000 0x80000000
+		./bin2sin result.elf 03000000010000402001000040000000
+		DEVID=7x27
+	else
+		echo "You did not specify valid device"
+		rm image ramdisk
+		exit
+		
+	fi
+fi
+
+rm result.elf
+mv result.elf.sin kernel.sin
+
+mv kernel.sin ../../output/
+
