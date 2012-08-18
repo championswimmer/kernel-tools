@@ -4,8 +4,8 @@ echo "We can build kernels for the following devices "
 echo "----------------------------------------------------------------"
 echo
 echo "1. Xperia S (gingerbread 2.3.x)"
-echo "2. Xperia S (ice cream sandwich 4.0.x)"
-echo "3. Xperia P (gingerbread 2.3.x)"
+echo "2. Xperia S (ice cream sandwich 4.0.x, jellybean 4.1.x)"
+echo "3. Xperia P/U/Sola/Go (gingerbread 2.3.x)"
 echo
 echo "----------------------------------------------------------------"
 echo
