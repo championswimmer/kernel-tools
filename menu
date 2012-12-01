@@ -1,7 +1,7 @@
 #!/bin/bash
 export TOPDIR=$(cd $(dirname "$0"); pwd)
 cd $TOPDIR
-export K_VER=0.2.3
+export K_VER=0.3.0
 export KITCHEN=$TOPDIR/menu
 export INDIR=$TOPDIR/input
 export OUTDIR=$TOPDIR/output
@@ -34,7 +34,7 @@ echo
 echo "The kitchen can perform the following functions"
 echo
 echo "1.  Work with boot.img files (extract or build)"
-echo "2.  Work with kernel.sin and ftf files (extract or build) for Xperia 2011/2010"
+echo "2.  Work with kernel.sin and ftf files (extract or build) for Xperia"
 echo "3.  Work with kernel.elf files (extract or build) for Xperia 2012 devices"
 echo "4.  Work with init ramdisk (compress or extract)"
 echo "5.  Editing bootsplash images"
