@@ -1,0 +1,1 @@
+python mkelf.py -o kernel.elf 0@0x80208000 1@0x81500000,ramdisk 2@0x20000,rpm cmdline.txt@cmdline

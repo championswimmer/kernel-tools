@@ -1,0 +1,1 @@
+python mkelf.py -o kernel.elf 0@0x00200000 1@0x01200000,ramdisk

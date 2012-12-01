@@ -3,9 +3,11 @@ echo "----------------------------------------------------------------"
 echo "We can build kernels for the following devices "
 echo "----------------------------------------------------------------"
 echo
-echo "1. Xperia S (gingerbread 2.3.x)"
-echo "2. Xperia S (ice cream sandwich 4.0.x, jellybean 4.1.x)"
+echo "1. Xperia S/AcroS/Ion (gingerbread 2.3.x)"
+echo "2. Xperia S/AcroS/Ion (ice cream sandwich 4.0.x, jellybean 4.1.x)"
 echo "3. Xperia P/U/Sola/Go (gingerbread 2.3.x)"
+echo "4. Xperia P/U/Sola/Go (ICS 4.0.x)"
+echo "5. Xperia T/TX/V      (ICS 4.0.x, JB 4.1.x)"
 echo
 echo "----------------------------------------------------------------"
 echo
@@ -15,5 +17,7 @@ case $ELFOPT in
 	1) ./mk/S-gb ;;
 	2) ./mk/S-ics ;;
 	3) ./mk/P-gb ;;
+	4) ./mk/P-ics ;;
+	5) ./mk/T-ics ;;
 esac
 clear

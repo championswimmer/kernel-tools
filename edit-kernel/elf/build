@@ -24,6 +24,10 @@ then
 	then
 		cp ../../input/RPM.bin ./2
 	fi
+	if [ -e ../../input/cmdline.txt ]
+	then
+		cp ../../input/cmdline.txt ./cmdline.txt
+	fi
 	
 else
 	cp $1 ./0
@@ -32,6 +36,11 @@ else
 	then
 		cp $3 ./2
 	fi
+	if [ -e $4 ]
+	then
+		cp $4 ./cmdline.txt
+	fi
+
 fi
 
 if [ ! -e ./2 ]
@@ -41,12 +50,19 @@ then
 	echo " Xperia S kernel without RPM will not work"
 	echo
 fi
+if [ ! -e ./cmdline.txt ]
+then
+	echo
+	echo " cmdline.txt has not been found and hence will not be used "
+	echo " ICS/JB kernel without cmdline will not work"
+	echo
+fi
 
 read
 clear
 ./build-menu
 
 
-rm -f 0 1 2 ../../output/kernel.elf
+rm -f 0 1 2 cmdline.txt ../../output/kernel.elf
 mv -f kernel.elf ../../output/.
 echo "Find compiled kernel.elf inside output folder"
