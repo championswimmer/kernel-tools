@@ -18,6 +18,7 @@ echo " input directory    =" $INDIR
 echo " output directory   =" $OUTDIR
 echo " gcc version        =" $(gcc -dumpversion)
 echo " perl binary        =" $(command -v perl)
+echo " 7z binary          =" $(command -v 7z)
 echo " gzip binary        =" $(command -v gzip)
 echo " gunzip binary      =" $(command -v gunzip)
 echo " Imagemagick binary =" $(command -v convert)

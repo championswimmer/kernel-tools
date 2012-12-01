@@ -11,17 +11,18 @@ then
 	
 fi
 echo "============================================================="
-
+echo " sin/ftf creation supported only for 2010 models"
+echo " for newer models, you need to make boot.img or kernel.elf"
 echo "============================================================="
 read -p "Press [ENTER] to continue"
 clear
 
 echo " Please choose your action"
 echo ""
-echo "1. Extracts kernel contents (image & ramdisk) from ftf file"
-echo "2. Create ftf file from kernel and ramdisk"
-echo "3. Extract contents from kernel.sin file "
-echo "4. Create kernel.sin from zImage and ramdisk"
+echo "1. Extracts kernel contents (image & ramdisk) from ftf file (any Xperia)"
+echo "2. Create ftf file from kernel and ramdisk (only 2010)"
+echo "3. Extract contents from kernel.sin file (any Xperia)"
+echo "4. Create kernel.sin from zImage and ramdisk (only 2010)"
 echo ""
 read OPT
 
