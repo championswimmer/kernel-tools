@@ -40,6 +40,7 @@ then
 	mv 0 zImage
 	mv 1 ramdisk
 	mv 2 RPM.bin
+	mv 3 cmdline.txt
 else
 	echo "No elf found"
 	rm kernel.elf
@@ -51,6 +52,7 @@ mkdir -p kernel-contents
 mv zImage kernel-contents/.
 mv ramdisk kernel-contents/.
 mv RPM.bin kernel-contents/.
+mv cmdline.txt kernel-contents/.
 cd kernel-contents
 mkdir -p ramdisk-contents
 cd ramdisk-contents
