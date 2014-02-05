@@ -2,15 +2,15 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 
-rm -f initrd.img zImage bootimg.cfg boot.img
+rm -f ramdisk.img kernel bootimg.cfg boot.img
 
 
 if [ ! $1 -o ! $2 ]
 then
-	if [ -e  ../../input/zImage -a -e ../../input/initrd.img ]
+	if [ -e  ../../input/kernel -a -e ../../input/ramdisk.img ]
 	then
-		cp ../../input/zImage ./zImage
-		cp ../../input/initrd.img ./initrd.img
+		cp ../../input/kernel ./kernel
+		cp ../../input/ramdisk.img ./ramdisk.img
 	else
 		echo "-------------ERROR-----------------"
 		echo "image and ramdisk not found in input folder"
@@ -18,8 +18,8 @@ then
 	fi
 	
 else
-	cp $1 ./zImage
-	cp $2 ./initrd.img
+	cp $1 ./kernel
+	cp $2 ./ramdisk.img
 fi
 
 echo "================================"
@@ -65,7 +65,7 @@ ARCH=$(uname -s).$(uname -m)
 if [ $(command -v abootimg) ]
 then
 	
-	abootimg --create boot.img -f bootimg.cfg -k zImage -r initrd.img
+	abootimg --create boot.img -f bootimg.cfg -k kernel -r ramdisk.img
 else
 	if [ ! -e ./abootimg.$ARCH ]
 	then
@@ -76,10 +76,10 @@ else
 		read -p "Press [Enter] to continue"
 		gcc abootimg.c -o abootimg.$ARCH
 	fi
-./abootimg.$ARCH --create boot.img -f bootimg.cfg -k zImage -r initrd.img
+./abootimg.$ARCH --create boot.img -f bootimg.cfg -k kernel -r ramdisk.img
 
 fi
 
-rm -f zImage initrd.img bootimg.cfg
+rm -f kernel ramdisk.img bootimg.cfg
 mv -f boot.img ../../output/.
 echo "Find compiled boot.img inside output folder"

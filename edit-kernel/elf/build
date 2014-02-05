@@ -10,14 +10,14 @@ rm -f 0 1 2 kernel.elf
 
 if [ ! $1 -o ! $2 ]
 then
-	if [ -e  ../../input/zImage -a -e ../../input/ramdisk ]
+	if [ -e  ../../input/kernel -a -e ../../input/ramdisk.img ]
 	then
-		cp ../../input/zImage ./0
-		cp ../../input/ramdisk ./1
+		cp ../../input/kernel ./0
+		cp ../../input/ramdisk.img ./1
 		
 	else
 		echo "-------------ERROR-----------------"
-		echo "image and ramdisk not found in input folder"
+		echo "image and ramdisk.img not found in input folder"
 		exit
 	fi
 	if [ -e ../../input/RPM.bin ]

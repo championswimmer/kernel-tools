@@ -2,7 +2,7 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 echo " --------------------------------------------------------"
-echo "   Champ's Script to extract zImage and ramdisk from elf "
+echo "   Champ's Script to extract kernel and ramdisk from elf "
 echo " --------------------------------------------------------"
 
 read -p "Press [Enter] to continue"
@@ -37,8 +37,8 @@ then
 		exit
 	fi 
 	rm -f kernel.elf
-	mv 0 zImage
-	mv 1 ramdisk
+	mv 0 kernel
+	mv 1 ramdisk.img
 	mv 2 RPM.bin
 	mv 3 cmdline.txt
 else
@@ -49,14 +49,14 @@ fi
 
 rm -r -f kernel-contents
 mkdir -p kernel-contents
-mv zImage kernel-contents/.
-mv ramdisk kernel-contents/.
+mv kernel kernel-contents/.
+mv ramdisk.img kernel-contents/.
 mv RPM.bin kernel-contents/.
 mv cmdline.txt kernel-contents/.
 cd kernel-contents
 mkdir -p ramdisk-contents
 cd ramdisk-contents
-gunzip -c ../ramdisk | cpio -i
+gunzip -c ../ramdisk.img | cpio -i
 cd ../..
 mv kernel-contents ../../output/
 echo "------------------------------------------------------"

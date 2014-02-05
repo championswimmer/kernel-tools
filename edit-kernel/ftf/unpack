@@ -2,7 +2,7 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 echo " --------------------------------------------------------"
-echo "   Champ's Script to extract zImage and ramdisk from ftf "
+echo "   Champ's Script to extract kernel and ramdisk from ftf "
 echo "        using DoomLord's Kernel.sin unpacker perl script "
 echo " --------------------------------------------------------"
 
@@ -48,8 +48,8 @@ mkdir -p kernel-contents
 rm -f *.ftf
 mv kernel.sin* kernel-contents/.
 cd kernel-contents
-mv *.cpio.gz ramdisk.cpio.gz
-mv  *kernel zImage
+mv *.cpio.gz ramdisk.img
+mv  *kernel kernel
 mv *header header-file
 mv kernel.sin-ramdisk ramdisk
 cd ..

@@ -19,8 +19,8 @@ echo -----------------------------------------------------
 
 echo   before you begin make sure that:
 echo
-echo      kernel zImage is called "zImage" 
-echo      ramdisk.cpio.gz is called "ramdisk.cpio.gz"
+echo      kernel kernel is called "kernel" 
+echo      ramdisk.img is called "ramdisk.img"
 echo      and both the files are present in input folder
 echo
 echo                 or 
@@ -31,10 +31,10 @@ read -p "Press [Enter] key to create ftf..."
 
 if [ ! $1 -o ! $2 ]
 then
-	if [ -e  ../../input/zImage -a -e ../../input/ramdisk.cpio.gz ]
+	if [ -e  ../../input/kernel -a -e ../../input/ramdisk.img ]
 	then
-		cp ../../input/zImage ./image
-		cp ../../input/ramdisk.cpio.gz ./ramdisk
+		cp ../../input/kernel ./image
+		cp ../../input/ramdisk.img ./ramdisk
 	else
 		echo "-------------ERROR-----------------"
 		echo "image and ramdisk not found in input folder"

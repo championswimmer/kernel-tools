@@ -25,13 +25,13 @@ fi
 
 if [ -d ramdisk-folder ]
 then
-	rm -f ramdisk.cpio.gz
+	rm -f ramdisk.img
 	cd ramdisk-folder
-	find . | cpio -o -H newc | gzip > ../ramdisk.cpio.gz
+	find . | cpio -o -H newc | gzip > ../ramdisk.img
 	cd ..
-	mv ramdisk.cpio.gz ../output
+	mv ramdisk.img ../output
 	rm -f -r ramdisk-folder
-	echo "ramdisk.cpio.gz created inside output directory"
+	echo "ramdisk.img created inside output directory"
 	echo "----------thank you !!! -----------"
 
 else

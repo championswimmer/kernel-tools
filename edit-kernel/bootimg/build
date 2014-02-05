@@ -2,15 +2,15 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 
-rm -f initrd.img zImage *.cfg boot.img
+rm -f ramdisk.img kernel *.cfg boot.img
 
 
 if [ ! $1 -o ! $2 ]
 then
-	if [ -e  ../../input/zImage -a -e ../../input/initrd.img ]
+	if [ -e  ../../input/kernel -a -e ../../input/ramdisk.img ]
 	then
-		cp ../../input/zImage ./zImage
-		cp ../../input/initrd.img ./initrd.img
+		cp ../../input/kernel ./kernel
+		cp ../../input/ramdisk.img ./ramdisk.img
 		
 	else
 		echo "-------------ERROR-----------------"
@@ -19,8 +19,8 @@ then
 	fi
 	
 else
-	cp $1 ./zImage
-	cp $2 ./initrd.img
+	cp $1 ./kernel
+	cp $2 ./ramdisk.img
 fi
 
 echo "================================"
@@ -56,10 +56,10 @@ then
 	gcc rsa.o sha.o mkbootimg.c -w -o mkbootimg.$ARCH
 	rm -f *.o
 fi
-./mkbootimg.$ARCH --cmdline "$CMDLINE" --base $BASE --kernel ./zImage --ramdisk ./initrd.img -o ./boot.img
+./mkbootimg.$ARCH --cmdline "$CMDLINE" --base $BASE --kernel ./kernel --ramdisk ./ramdisk.img -o ./boot.img
 
 
 
-rm -f zImage initrd.img
+rm -f kernel ramdisk.img
 mv -f boot.img ../../output/.
 echo "Find compiled boot.img inside output folder"

@@ -2,7 +2,7 @@
 DIR=$(cd $(dirname "$0"); pwd)
 cd $DIR
 
-rm -f initrd.img zImage boot.img
+rm -f ramdisk.img kernel boot.img
 rm -f -r ramdisk-contents
 
 if [ ! $1 ]
@@ -42,8 +42,8 @@ cd ramdisk-contents
 gunzip -c ../boot.img-ramdisk.gz | cpio -i
 cd ..
 mkdir -p bootimg-contents
-mv -f boot.img-kernel bootimg-contents/zImage
-mv -f boot.img-ramdisk.gz bootimg-contents/initrd.img
+mv -f boot.img-kernel bootimg-contents/kernel
+mv -f boot.img-ramdisk.gz bootimg-contents/ramdisk.img
 if [ -e boot.img-second.gz ]
 then
 	mv -f boot.img-second.gz bootimg-contents/second.img
@@ -53,4 +53,4 @@ mv -f $BOOT_CONFIG_NAME.cfg bootimg-contents/.
 rm -f -r ../../output/bootimg-contents
 rm -f boot.img
 mv -f bootimg-contents ../../output/.
-echo "Find zImage, initrd.img, $BOOT_CONFIG_NAME.cfg and ramdisk-contents inside 'bootimg-contents' in output folder"
+echo "Find kernel, ramdisk.img, $BOOT_CONFIG_NAME.cfg and ramdisk-contents inside 'bootimg-contents' in output folder"

@@ -4,7 +4,7 @@ cd $DIR
 echo "---------------------------------------------------------"
 echo "-----------Extract Ramdisk (Android )-------------------"
 echo "Please make sure that "
-echo "ramdisk is named 'ramdisk.cpio.gz' or 'initrd.img'"
+echo "ramdisk is named 'ramdisk.cpio.gz' or 'ramdisk.img'"
 echo "and kept in input folder"
 echo
 echo "or"
@@ -13,18 +13,18 @@ echo "you have called ramdisk file in arguement"
 
 if [ ! $1 ]
 then
-	if [  -e ../input/initrd.img  -a  -e ../input/ramdisk.cpio.gz   ]
+	if [  -e ../input/ramdisk.img  -a  -e ../input/ramdisk.cpio.gz   ]
 	then
 	
-		echo "Please use either initrd.img or ramdisk.cpio.gz "
+		echo "Please use either ramdisk.img or ramdisk.cpio.gz "
 		echo "I cannot extract more than one ramdisk together"
 		echo "There should be only one ramdisk"
 		exit
 	fi
 
-	if [ -e ../input/initrd.img ]
+	if [ -e ../input/ramdisk.img ]
 	then
-		cp -f ../input/initrd.img ./ramdisk
+		cp -f ../input/ramdisk.img ./ramdisk
 	fi
 
 	if [ -e ../input/ramdisk.cpio.gz ]

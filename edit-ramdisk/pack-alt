@@ -36,7 +36,7 @@ fi
 
 if [ -d ramdisk-folder ]
 then
-	rm -f ramdisk.cpio.gz
+	rm -f ramdisk.img
 	./mkbootfs.$ARCH ./ramdisk-folder | gzip > initrd.img
 	mv initrd.img ../output
 	rm -f -r ramdisk-folder
