@@ -1,6 +1,6 @@
 #Android Kernel Kitchen
-tools to tinker with kernels and ramdisks 
-
+tools to tinker with kernels and ramdisks   
+[![Contact me on Codementor](https://cdn.codementor.io/badges/contact_me_github.svg)](https://www.codementor.io/championswimmer?utm_source=github&utm_medium=button&utm_term=championswimmer&utm_campaign=github)
 
 ## Install Pre-requisite Packages
 
